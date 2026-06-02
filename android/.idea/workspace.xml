@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75741709-8df3-4fd2-9f9b-2f4251955a8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerScreenRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerScreenRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerUiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerUiUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/markdown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +22,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\hamid\.android\avd\Medium_Phone.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -32,6 +31,27 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "OPEN"
+    },
+    {
+      "state": "OPEN",
+      "author": "HamidJavaid1"
+    }
+  ],
+  "lastFilter": {
+    "state": "OPEN",
+    "author": "HamidJavaid1"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HamidJavaid1/MyGroceryApp.git",
+    "accountId": "02cc8932-104f-43c4-852a-40efbaabd12e"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -48,13 +68,15 @@
     "Android App.wholesaler.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/hamid/OneDrive/Documents/GroceryApp/android",
     "project.structure.last.edited": "Dependencies",

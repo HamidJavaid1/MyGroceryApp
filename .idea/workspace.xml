@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba0b5f98-57fb-4bd6-ab13-74c1320f3f34" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerScreenRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerScreenRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerUiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/wholesaler/src/main/java/com/bazarlink/wholesaler/WholesalerUiUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/markdown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,7 @@
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/hamid/OneDrive/Documents/GroceryApp&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
