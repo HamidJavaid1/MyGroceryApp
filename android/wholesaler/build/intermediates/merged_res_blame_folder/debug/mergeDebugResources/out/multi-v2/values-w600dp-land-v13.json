@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.bazarlink.wholesaler-mergeDebugResources-59:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\hamid\\AppData\\Local\\Temp\\cursor-sandbox-cache\\68c6306684dbb54190009ff2d3dad0b0\\gradle\\caches\\8.9\\transforms\\81335119a568adab27dfc9fa2e61a412\\transformed\\material-1.12.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "54",
+                        "endOffsets": "105"
+                    }
+                }
+            ]
+        }
+    ]
+}

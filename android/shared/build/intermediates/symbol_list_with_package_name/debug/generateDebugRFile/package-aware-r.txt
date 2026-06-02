@@ -1,0 +1,3 @@
+com.bazarlink.shared
+plurals scanner_items_detected
+style Theme_BazarLink_Scanner

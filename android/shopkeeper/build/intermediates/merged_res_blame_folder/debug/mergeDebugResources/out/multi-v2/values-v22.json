@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.bazarlink.shopkeeper-mergeDebugResources-59:/values-v22/values-v22.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\hamid\\AppData\\Local\\Temp\\cursor-sandbox-cache\\68c6306684dbb54190009ff2d3dad0b0\\gradle\\caches\\8.9\\transforms\\898b79dd632f89eb91b6f092b9b23fc3\\transformed\\appcompat-1.7.0\\res\\values-v22\\values-v22.xml",
+                    "from": {
+                        "startLines": "2,3,4,9",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,130,217,487",
+                        "endLines": "2,3,8,13",
+                        "endColumns": "74,86,12,12",
+                        "endOffsets": "125,212,482,764"
+                    }
+                }
+            ]
+        }
+    ]
+}

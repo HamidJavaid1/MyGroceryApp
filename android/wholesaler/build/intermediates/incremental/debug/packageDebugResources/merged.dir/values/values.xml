@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bazar_primary">#2E7D32</color>
+    <color name="bazar_secondary">#F57F17</color>
+    <string name="default_web_client_id" translatable="false">613377877604-dmb5i67en8862u90h2ngep6qoi0bqbk7.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">613377877604</string>
+    <string name="google_api_key" translatable="false">AIzaSyD3iMVmWG7spIMVs_Ye1c2d6-4z1viOLRQ</string>
+    <string name="google_app_id" translatable="false">1:613377877604:android:8b5e27762857ea75b92171</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD3iMVmWG7spIMVs_Ye1c2d6-4z1viOLRQ</string>
+    <string name="google_storage_bucket" translatable="false">groceryapp-dab02.firebasestorage.app</string>
+    <string name="project_id" translatable="false">groceryapp-dab02</string>
+    <style name="Theme.BazarLink" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/bazar_primary</item>
+        <item name="colorSecondary">@color/bazar_secondary</item>
+        <item name="fontFamily">sans</item>
+    </style>
+</resources>

@@ -1,0 +1,2 @@
+int plurals scanner_items_detected 0x0
+int style Theme_BazarLink_Scanner 0x0
