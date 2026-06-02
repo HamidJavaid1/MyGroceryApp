@@ -1,4 +1,77 @@
 
+
+
+# BazarLink — Grocery Marketplace App
+
+> **Version:** 1.0.0 | **Platform:** Android | **Category:** Shopping / Grocery
+
+BazarLink is a full-featured grocery marketplace that connects **customers**, **shopkeepers**, and **wholesalers** in one unified platform. Customers browse and order from nearby shops, shopkeepers manage their inventory and fulfill orders, and wholesalers post bulk supply offers with quotation-based pricing — all in real time.
+
+---
+
+## Table of Contents
+
+- [App Overview](#app-overview)
+- [Features by Role](#features-by-role)
+- [Screenshots](#screenshots)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Backend Setup](#backend-setup)
+- [Android Setup](#android-setup)
+- [Firebase Integration](#firebase-integration)
+- [Key API Endpoints](#key-api-endpoints)
+- [WebSocket / Real-Time](#websocket--real-time)
+- [Deployment](#deployment)
+- [Privacy Policy](#privacy-policy)
+- [App Permissions](#app-permissions)
+- [Store Listing Details](#store-listing-details)
+- [Contributing](#contributing)
+
+---
+
+## App Overview
+
+| Field | Details |
+|---|---|
+| **App Name** | BazarLink |
+| **Version Name** | 1.0.0 |
+| **Version Code** | 1 |
+| **Package ID** | `com.bazarlink.customer` |
+| **Category** | Shopping / Grocery |
+| **Minimum SDK** | Android 7.0 (API 24) |
+| **Target SDK** | Android 14 (API 34) |
+| **Platform** | Android |
+
+---
+
+## Features by Role
+
+### Customer
+- Browse product categories and search with filters (price, rating, category)
+- View nearby shops using live location (haversine-based radius search)
+- Place orders and track them in real time via WebSocket
+- Receive push notifications on order status updates
+- Google Sign-In and phone authentication support
+
+### Shopkeeper
+- Manage product listings, stock, and pricing
+- Accept or reject incoming orders with status transitions
+- View sales analytics and order history dashboard
+- Receive FCM push notifications for new orders
+
+### Wholesaler
+- Post bulk supply requests and set minimum order quantities
+- Receive and respond to quotations from shopkeepers
+- Accept or decline quotation offers
+- Access analytics overview for bulk transaction performance
+
+---
+
+## Screenshots
+
+_Screenshots are included in the Play Store listing and in the `screenshots/` directory at the project root._
+
+
 <img width="328" height="739" alt="image" src="https://github.com/user-attachments/assets/19fa9591-b2c9-4979-9fac-cb735a256786" />
 <img width="328" height="742" alt="image" src="https://github.com/user-attachments/assets/ada2467b-22f2-4bd3-a3c8-40c5665cb153" />
 <img width="327" height="731" alt="image" src="https://github.com/user-attachments/assets/0ad65568-d2ca-400e-bcf3-ab2437e40d47" />
@@ -19,145 +92,303 @@
 <img width="330" height="728" alt="image" src="https://github.com/user-attachments/assets/4f45cd06-7ef3-455e-8ab4-42b9ebc2dd84" />
 <img width="325" height="717" alt="image" src="https://github.com/user-attachments/assets/9dd6e721-43f2-4b3f-b6b3-75fd16421721" />
 
-# BazarLink
+## Tech Stack
 
-BazarLink is a grocery marketplace monorepo with a Django REST backend and one Android Java client that uses role-based access for customers, shopkeepers, and wholesalers.
+### Backend (`backend/`)
+| Component | Technology |
+|---|---|
+| Framework | Django 4 + Django REST Framework |
+| Authentication | Simple JWT |
+| Database | PostgreSQL (Docker) / SQLite (local) |
+| Real-Time | Django Channels + Redis |
+| Push Notifications | Firebase Cloud Messaging (FCM) |
+| Admin Panel | Jazzmin |
+| API Docs | drf-spectacular (Swagger / OpenAPI) |
+| Containerization | Docker + Docker Compose |
+| Web Server | Nginx + Gunicorn |
 
-## Structure
+### Android (`android/`)
+| Component | Technology |
+|---|---|
+| Language | Java |
+| HTTP Client | Retrofit 2 |
+| Local Cache | Room (SQLite) |
+| Authentication | Firebase Auth (Email, Google, Phone) |
+| Notifications | Firebase Messaging (FCM) |
+| Maps | Google Maps SDK |
+| Image Loading | Glide |
+| Animations | Lottie |
+| UI | Material Design 3 |
+| Charts | MPAndroidChart |
 
-- `backend/` - Django 4, DRF, Simple JWT, PostgreSQL/SQLite, Channels, FCM, Jazzmin admin, drf-spectacular.
-- `android/app/` - Single Android app with role-based customer, shopkeeper, and wholesaler access.
-- `android/shared/` - Shared Java API, Firebase messaging, Room cache, and model code.
-- `deploy/nginx/` - Nginx reverse proxy config.
-- `docker-compose.yml` - PostgreSQL/PostGIS, Redis, Django/Gunicorn, Nginx stack.
+---
+
+## Project Structure
+
+```
+BazarLink/
+├── backend/                  # Django REST API
+│   ├── apps/
+│   │   ├── auth/             # JWT auth, registration
+│   │   ├── users/            # User profiles, FCM tokens
+│   │   ├── products/         # Product listings, categories
+│   │   ├── shops/            # Shop management, location
+│   │   ├── orders/           # Order lifecycle, transitions
+│   │   ├── bulk_requests/    # Wholesale bulk requests
+│   │   ├── quotations/       # Quotation flow
+│   │   └── analytics/        # Dashboard analytics
+│   ├── .env.example
+│   └── requirements.txt
+├── android/
+│   ├── app/                  # Main Android app (role-based launcher)
+│   └── shared/               # Shared: API client, Room, Firebase, models
+├── deploy/
+│   └── nginx/                # Nginx reverse proxy config
+├── secrets/                  # Firebase Admin service account (gitignored)
+├── scripts/
+│   └── docker-dev.ps1        # Windows Docker helper
+└── docker-compose.yml        # Full stack: Postgres, Redis, Django, Nginx
+```
+
+---
 
 ## Backend Setup
 
-1. Copy environment values:
+### Option A — Docker (Recommended)
 
+1. Copy environment file:
    ```bash
    cp backend/.env.example backend/.env
    ```
 
 2. Add Firebase Admin credentials:
-
    ```bash
    mkdir -p secrets
    cp path/to/firebase-service-account.json secrets/firebase-service-account.json
    ```
 
-3. Copy Docker env (Postgres user/password must match in one file):
-
-   ```bash
-   cp backend/.env.example backend/.env
-   ```
-
-4. Start the stack (API on port **8000** for the Android emulator):
-
+3. Start the full stack (API on **port 8000** for Android emulator):
    ```powershell
    # Windows
    .\scripts\docker-dev.ps1
    ```
-
    Or manually:
-
    ```bash
    docker compose up -d --build
    docker compose exec django python manage.py seed_dummy_data
    ```
 
-   The Android app calls **`http://10.0.2.2:8000/`** (emulator → your PC). Keep Docker running while testing.
-
-5. Create an admin user:
-
+4. Create a superuser for the admin panel:
    ```bash
    docker compose exec django python manage.py createsuperuser
    ```
 
-   Demo logins (after `seed_dummy_data`) use password `DemoPass123!`:
+5. Access local services:
+   | Service | URL |
+   |---|---|
+   | Admin Panel | `http://localhost/admin/` |
+   | Swagger Docs | `http://localhost/api/v1/docs/` |
+   | OpenAPI Schema | `http://localhost/api/v1/schema/` |
+   | Android Emulator Base URL | `http://10.0.2.2:8000/` |
 
-   - `demo_customer`
-   - `demo_shopkeeper`
-   - `demo_wholesaler`
+### Option B — Windows Local (No Docker / No GDAL)
 
-6. Open in a browser on your PC:
+```powershell
+cd backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+copy .env.example .env        # Make sure USE_SQLITE=True is set
+python manage.py migrate
+python manage.py seed_dummy_data
+python manage.py runserver 0.0.0.0:8000
+```
 
-   - Admin: `http://localhost/admin/`
-   - Swagger: `http://localhost/api/v1/docs/`
-   - Schema: `http://localhost/api/v1/schema/`
+> Shop locations use plain latitude/longitude fields. Nearby shop queries use a Python haversine calculation — no GeoDjango or GDAL required.
 
-## Windows local backend (no GDAL / Docker)
+### Demo Accounts (after `seed_dummy_data`)
 
-1. From `backend/`:
+All demo accounts use password `DemoPass123!`:
 
-   ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
-   copy .env.example .env
-   ```
+| Role | Username |
+|---|---|
+| Customer | `demo_customer` |
+| Shopkeeper | `demo_shopkeeper` |
+| Wholesaler | `demo_wholesaler` |
 
-   Ensure `.env` contains `USE_SQLITE=True` (default on Windows).
-
-2. Initialize the database and demo data:
-
-   ```powershell
-   python manage.py migrate
-   python manage.py seed_dummy_data
-   python manage.py runserver 0.0.0.0:8000
-   ```
-
-3. Point the Android emulator at `http://10.0.2.2:8000/`.
-
-Shop locations use latitude/longitude fields (no GeoDjango). Nearby shops are filtered with a haversine distance calculation in Python.
+---
 
 ## Android Setup
 
-Open `android/` in Android Studio and run the `app` module. The app shows the customer, shopkeeper, or wholesaler experience from one launcher based on the user's role.
+1. Open the `android/` folder in **Android Studio**.
+2. Run the `app` module on an emulator or physical device.
+3. Set the API base URL in the app's build config or entry code:
+   - Emulator → `http://10.0.2.2:8000/`
+   - Physical device on same network → use your PC's local IP
+4. The `shared/` module provides Retrofit, Room, Firebase, Google Maps, Glide, Lottie, Material 3, and chart dependencies automatically.
 
-Set the API base URL in the app entry code or a build config before release. The shared module already includes Retrofit 2, Room, Firebase Auth/Messaging, Google Sign-In, Google Maps, Glide, Lottie, Material 3, and chart dependencies.
+The single launcher app detects the user's role after login and routes them to the appropriate Customer, Shopkeeper, or Wholesaler experience.
+
+---
 
 ## Firebase Integration
 
-1. Create one Android app in Firebase for the application id used by `android/app/build.gradle`.
-   The current development build keeps `com.bazarlink.customer` so the existing Firebase JSON continues to work.
-2. If you change the application id, download a new `google-services.json`.
-3. Place the file in:
-   - `android/app/google-services.json`
-4. Enable Email/Password, Google Sign-In, and Phone auth in Firebase Console.
-5. Download a Firebase Admin service-account JSON and mount it at `secrets/firebase-service-account.json`.
+1. Create an Android app in [Firebase Console](https://console.firebase.google.com/) matching the application ID in `android/app/build.gradle` (default: `com.bazarlink.customer`).
+2. Enable the following auth providers in Firebase Console:
+   - Email/Password
+   - Google Sign-In
+   - Phone
+3. Download `google-services.json` and place it at:
+   ```
+   android/app/google-services.json
+   ```
+4. Download the **Firebase Admin SDK** service account JSON and place it at:
+   ```
+   secrets/firebase-service-account.json
+   ```
 
-Older Firebase app ids may still exist in the project from the previous split-app setup:
-   - `com.bazarlink.customer`
-   - `com.bazarlink.shopkeeper`
-   - `com.bazarlink.wholesaler`
+> If you change the application ID from `com.bazarlink.customer`, download a new `google-services.json` from the Firebase Console.
+
+---
 
 ## Key API Endpoints
 
-All endpoints are under `/api/v1/`.
+All endpoints are prefixed with `/api/v1/`.
 
-- `POST /auth/register/`
-- `GET/PATCH /users/me/`
-- `POST /users/fcm-token/`
-- `GET /categories/`
-- `GET /products/?category=&min_price=&max_price=&rating=`
-- `GET /shops/nearby/?lat=&lng=&radius_km=`
-- `POST /orders/`
-- `POST /orders/{id}/transition/`
-- `POST /bulk-requests/`
-- `POST /quotations/`
-- `POST /quotations/{id}/accept/`
-- `GET /analytics/overview/`
+### Authentication & Users
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/auth/register/` | Register a new user |
+| `GET/PATCH` | `/users/me/` | Get or update current user profile |
+| `POST` | `/users/fcm-token/` | Register FCM push token |
 
-WebSocket order tracking is available at `/ws/orders/{order_id}/`.
+### Products & Shops
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/categories/` | List all product categories |
+| `GET` | `/products/` | List products with filters (`category`, `min_price`, `max_price`, `rating`) |
+| `GET` | `/shops/nearby/` | Find nearby shops (`lat`, `lng`, `radius_km`) |
 
-## VPS Deployment Notes
+### Orders
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/orders/` | Place a new order |
+| `POST` | `/orders/{id}/transition/` | Advance order status (confirm, dispatch, complete, cancel) |
 
-Point your domain to the VPS, update `ALLOWED_HOSTS`, set strong database and Django secrets, then run:
+### Wholesale
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/bulk-requests/` | Create a wholesale bulk request |
+| `POST` | `/quotations/` | Submit a quotation |
+| `POST` | `/quotations/{id}/accept/` | Accept a quotation |
 
-```bash
-docker compose --env-file backend/.env up -d --build
+### Analytics
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/analytics/overview/` | Dashboard summary for shopkeepers/wholesalers |
+
+---
+
+## WebSocket / Real-Time
+
+Live order tracking is available over WebSocket:
+
+```
+ws://<host>/ws/orders/{order_id}/
 ```
 
-The Nginx config is ready for Let's Encrypt HTTP-01 challenges under `/.well-known/acme-challenge/`. Add a certbot sidecar or run certbot on the host and mount certificates into `deploy/certbot/conf`.
+The Android app connects to this channel after placing an order and receives real-time status updates (e.g., `confirmed → dispatched → delivered`).
+
+---
+
+## Deployment
+
+### VPS / Production
+
+1. Point your domain to the VPS IP.
+2. Update `ALLOWED_HOSTS` and set strong secrets in `backend/.env`.
+3. Start the production stack:
+   ```bash
+   docker compose --env-file backend/.env up -d --build
+   ```
+4. The Nginx config supports **Let's Encrypt** HTTP-01 challenges at `/.well-known/acme-challenge/`. Add a certbot sidecar or run certbot on the host and mount certificates into `deploy/certbot/conf`.
+
+---
+
+## Privacy Policy
+
+BazarLink collects only the data required to operate the marketplace:
+
+- **Account information** (name, email, phone) for authentication and order communication.
+- **Location data** (latitude/longitude) used only to show nearby shops; never stored continuously.
+- **Device FCM token** used solely to deliver order status push notifications.
+- **Order and transaction data** stored securely and never shared with third parties for advertising.
+
+Users may request deletion of their account and all associated data by contacting support. Data is stored on encrypted servers and protected by industry-standard access controls.
+
+---
+
+## App Permissions
+
+| Permission | Purpose |
+|---|---|
+| `ACCESS_FINE_LOCATION` | Discover shops near the user's current location |
+| `ACCESS_COARSE_LOCATION` | Fallback location for shops nearby feature |
+| `INTERNET` | API communication and real-time order tracking |
+| `RECEIVE_BOOT_COMPLETED` | Restore notification listener on device restart |
+| `POST_NOTIFICATIONS` (Android 13+) | Display order status push notifications |
+| `CAMERA` (optional) | Profile photo upload |
+| `READ_EXTERNAL_STORAGE` (optional) | Select product or profile images from gallery |
+
+All permissions are requested at runtime. Location and camera permissions are optional and the app remains functional without them (with reduced features).
+
+---
+
+## Store Listing Details
+
+| Field | Value |
+|---|---|
+| **App Name** | BazarLink — Grocery Marketplace |
+| **Short Description** | Order groceries from nearby shops. Manage your store. Trade wholesale — all in one app. |
+| **Category** | Shopping |
+| **Content Rating** | Everyone |
+| **Version Name** | 1.0.0 |
+| **Version Code** | 1 |
+
+### Full Description
+
+BazarLink brings your local grocery market online. Whether you're a customer looking for fresh produce from the shop around the corner, a shopkeeper wanting to grow your business digitally, or a wholesaler managing bulk supply — BazarLink is built for you.
+
+**For Customers:**
+Find shops near you, browse categories, compare prices, and place orders in seconds. Track your order live from confirmation to delivery.
+
+**For Shopkeepers:**
+List your products, manage inventory, and receive orders with instant push notifications. View your sales analytics to grow smarter.
+
+**For Wholesalers:**
+Post bulk supply requests, receive quotations from buyers, and manage high-volume transactions through a streamlined workflow.
+
+**Key Features:**
+- Role-based experience in one app
+- Real-time order tracking via WebSocket
+- Nearby shop discovery using live GPS
+- Secure login via Email, Google, or Phone
+- Push notifications for every order update
+- Fully offline-capable browsing with Room cache
+
+---
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "feat: describe your change"`
+4. Push and open a Pull Request.
+
+Please follow the existing code style and include tests where applicable.
+
+---
+
+*BazarLink — Connecting markets, one order at a time.*
+
 ﻿# MyGroceryApp
