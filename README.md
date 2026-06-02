@@ -1,3 +1,24 @@
+
+<img width="328" height="739" alt="image" src="https://github.com/user-attachments/assets/19fa9591-b2c9-4979-9fac-cb735a256786" />
+<img width="328" height="742" alt="image" src="https://github.com/user-attachments/assets/ada2467b-22f2-4bd3-a3c8-40c5665cb153" />
+<img width="327" height="731" alt="image" src="https://github.com/user-attachments/assets/0ad65568-d2ca-400e-bcf3-ab2437e40d47" />
+<img width="329" height="738" alt="image" src="https://github.com/user-attachments/assets/6d0da277-36a7-44b4-ab19-e2c052b568cb" />
+<img width="313" height="723" alt="image" src="https://github.com/user-attachments/assets/daf13097-b204-4603-a740-a1f79168bcef" />
+<img width="319" height="578" alt="image" src="https://github.com/user-attachments/assets/f53d6e80-f957-4f4c-aa35-491216211925" />
+<img width="325" height="733" alt="image" src="https://github.com/user-attachments/assets/0e4cfa0a-31c1-4820-b7c3-20e849b732fd" />
+<img width="318" height="725" alt="image" src="https://github.com/user-attachments/assets/5d13a0ac-9d72-4321-977f-88e41ccc2e25" />
+<img width="328" height="723" alt="image" src="https://github.com/user-attachments/assets/b42e3bde-c57a-4216-92e1-1ebb42d52bb9" />
+<img width="325" height="731" alt="image" src="https://github.com/user-attachments/assets/6be81499-019b-49aa-b38b-7800420a3cda" />
+
+ <img width="329" height="712" alt="image" src="https://github.com/user-attachments/assets/0bc462f7-4f82-4bfd-849b-f19eb5243b88" />
+<img width="323" height="735" alt="image" src="https://github.com/user-attachments/assets/d19f2233-2163-4434-a401-300decaa99e9" />
+<img width="322" height="726" alt="image" src="https://github.com/user-attachments/assets/f669b05a-3422-4bd5-9031-db0586b577a4" />
+<img width="328" height="725" alt="image" src="https://github.com/user-attachments/assets/bad421da-05a6-4c10-971f-e3f70b2fd056" />
+<img width="332" height="733" alt="image" src="https://github.com/user-attachments/assets/f11e3c4a-a21a-4f1b-8ff4-ff1d5740953b" />
+<img width="329" height="734" alt="image" src="https://github.com/user-attachments/assets/402a25e6-9674-438d-98bd-b01a2ca24cac" />
+<img width="330" height="728" alt="image" src="https://github.com/user-attachments/assets/4f45cd06-7ef3-455e-8ab4-42b9ebc2dd84" />
+<img width="325" height="717" alt="image" src="https://github.com/user-attachments/assets/9dd6e721-43f2-4b3f-b6b3-75fd16421721" />
+
 # BazarLink
 
 BazarLink is a grocery marketplace monorepo with a Django REST backend and one Android Java client that uses role-based access for customers, shopkeepers, and wholesalers.
