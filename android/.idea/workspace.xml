@@ -9,10 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75741709-8df3-4fd2-9f9b-2f4251955a8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="75741709-8df3-4fd2-9f9b-2f4251955a8f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

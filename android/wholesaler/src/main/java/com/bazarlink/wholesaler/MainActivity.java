@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception ignored) {}
         // Fallback for dev environments; adjust in your login flow or token store.
-        return "http://10.0.2.2:8000/";
+        return "https://mygroceryapp-4ryn.onrender.com/";
     }
 
     private void renderDashboard() {
