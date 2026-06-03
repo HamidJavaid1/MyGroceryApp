@@ -21,11 +21,12 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /app/
 RUN rm -f /app/.env
 
-# Run database migrations
-RUN python manage.py migrate --noinput
-
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
+# Copy entrypoint script
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 # Run the application
-CMD ["gunicorn", "bazarlink.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["/app/entrypoint.sh"]
