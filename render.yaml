@@ -20,7 +20,7 @@ services:
       - key: CORS_ALLOW_ALL_ORIGINS
         value: true
       - key: USE_SQLITE
-        value: true
+        value: false
       - key: POSTGRES_HOST
         fromDatabase:
           name: bazarlink-db
