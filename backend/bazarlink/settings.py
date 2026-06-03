@@ -64,7 +64,7 @@ MIDDLEWARE = [
     # "django.middleware.security.SecurityMiddleware",  # Disabled temporarily
     "whitenoise.middleware.WhiteNoiseMiddleware",
     # "django.contrib.sessions.middleware.SessionMiddleware",  # Disabled temporarily
-    "django.middleware.common.CommonMiddleware",
+    # "django.middleware.common.CommonMiddleware",  # Disabled temporarily
     # "django.middleware.csrf.CsrfViewMiddleware",  # Disabled for JWT API
     # "django.contrib.auth.middleware.AuthenticationMiddleware",  # Disabled temporarily
     # "django.contrib.messages.middleware.MessageMiddleware",  # Disabled temporarily
