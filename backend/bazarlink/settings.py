@@ -7,7 +7,8 @@ from decouple import Csv, config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Local Windows dev: set USE_SQLITE=true in backend/.env (no Postgres/Redis/GDAL required).
-USE_SQLITE = config("USE_SQLITE", default=sys.platform == "win32", cast=bool)
+# For production (Render), default to False to use PostgreSQL
+USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
 
 SECRET_KEY = config("SECRET_KEY", default="change-me-in-production")
 DEBUG = config("DEBUG", default=USE_SQLITE, cast=bool)

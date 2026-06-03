@@ -17,8 +17,9 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy project
+# Copy project (excluding .env for production)
 COPY . /app/
+RUN rm -f /app/.env
 
 # Collect static files
 RUN python manage.py collectstatic --noinput

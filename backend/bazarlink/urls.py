@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
@@ -12,6 +13,19 @@ from apps.products.views import CategoryViewSet, ProductViewSet, ReviewViewSet
 from apps.shops.views import ShopViewSet
 from apps.users.views import AuthViewSet, UserViewSet
 from rest_framework_simplejwt.views import TokenRefreshView
+
+
+def api_root(request):
+    return JsonResponse({
+        "message": "BazarLink API",
+        "version": "1.0.0",
+        "endpoints": {
+            "api": "/api/v1/",
+            "docs": "/api/v1/docs/",
+            "schema": "/api/v1/schema/",
+            "admin": "/admin/"
+        }
+    })
 
 router = DefaultRouter()
 router.register("auth", AuthViewSet, basename="auth")
@@ -27,6 +41,7 @@ router.register("notifications", NotificationViewSet)
 router.register("analytics", AnalyticsViewSet, basename="analytics")
 
 urlpatterns = [
+    path("", api_root),
     path("admin/", admin.site.urls),
     path("api/v1/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/v1/", include(router.urls)),
