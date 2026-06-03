@@ -113,17 +113,28 @@ else:
             "PASSWORD": config("POSTGRES_PASSWORD", default="bazarlink"),
             "HOST": config("POSTGRES_HOST", default="localhost"),
             "PORT": config("POSTGRES_PORT", default="5432"),
-        }
-    }
-
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {
-                "hosts": [config("REDIS_URL", default="redis://localhost:6379/0")]
+            "CONN_MAX_AGE": 600,
+            "OPTIONS": {
+                "connect_timeout": 10,
             },
         }
     }
+
+    try:
+        CHANNEL_LAYERS = {
+            "default": {
+                "BACKEND": "channels_redis.core.RedisChannelLayer",
+                "CONFIG": {
+                    "hosts": [config("REDIS_URL", default="redis://localhost:6379/0")]
+                },
+            }
+        }
+    except:
+        CHANNEL_LAYERS = {
+            "default": {
+                "BACKEND": "channels.layers.InMemoryChannelLayer"
+            }
+        }
 
 AUTH_USER_MODEL = "users.User"
 
