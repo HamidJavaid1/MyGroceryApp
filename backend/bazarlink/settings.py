@@ -105,20 +105,29 @@ if USE_SQLITE:
         }
     }
 else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": config("POSTGRES_DB", default="bazarlink"),
-            "USER": config("POSTGRES_USER", default="bazarlink"),
-            "PASSWORD": config("POSTGRES_PASSWORD", default="bazarlink"),
-            "HOST": config("POSTGRES_HOST", default="localhost"),
-            "PORT": config("POSTGRES_PORT", default="5432"),
-            "CONN_MAX_AGE": 600,
-            "OPTIONS": {
-                "connect_timeout": 10,
-            },
+    try:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": config("POSTGRES_DB", default="bazarlink"),
+                "USER": config("POSTGRES_USER", default="bazarlink"),
+                "PASSWORD": config("POSTGRES_PASSWORD", default="bazarlink"),
+                "HOST": config("POSTGRES_HOST", default="localhost"),
+                "PORT": config("POSTGRES_PORT", default="5432"),
+                "CONN_MAX_AGE": 600,
+                "OPTIONS": {
+                    "connect_timeout": 5,
+                },
+            }
         }
-    }
+    except:
+        # Fallback to SQLite if PostgreSQL configuration fails
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": BASE_DIR / "db.sqlite3",
+            }
+        }
 
     try:
         CHANNEL_LAYERS = {
