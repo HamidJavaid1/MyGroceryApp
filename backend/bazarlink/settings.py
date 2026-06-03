@@ -11,13 +11,6 @@ USE_SQLITE = config("USE_SQLITE", default=sys.platform == "win32", cast=bool)
 
 SECRET_KEY = config("SECRET_KEY", default="change-me-in-production")
 DEBUG = config("DEBUG", default=USE_SQLITE, cast=bool)
-<<<<<<< HEAD
-<<<<<<< HEAD
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1,mygroceryapp-4ryn.onrender.com", cast=Csv())
-CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", default="https://mygroceryapp-4ryn.onrender.com", cast=Csv())
-=======
-=======
->>>>>>> b944e27cc3c48cca2f179aa52fa78abf8f4a8514
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
@@ -30,10 +23,6 @@ CSRF_TRUSTED_ORIGINS = config(
     default="https://mygroceryapp-4ryn.onrender.com",
     cast=Csv()
 )
-<<<<<<< HEAD
->>>>>>> b944e27cc3c48cca2f179aa52fa78abf8f4a8514
-=======
->>>>>>> b944e27cc3c48cca2f179aa52fa78abf8f4a8514
 
 INSTALLED_APPS = [
     "jazzmin",
