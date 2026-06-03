@@ -57,14 +57,14 @@ JAZZCASH_CONFIRM_URL = config("JAZZCASH_CONFIRM_URL", default="")
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
-    # "django.middleware.security.SecurityMiddleware",  # Disabled temporarily
+    "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    # "django.contrib.sessions.middleware.SessionMiddleware",  # Disabled temporarily
-    # "django.middleware.common.CommonMiddleware",  # Disabled temporarily
-    # "django.middleware.csrf.CsrfViewMiddleware",  # Disabled for JWT API
-    # "django.contrib.auth.middleware.AuthenticationMiddleware",  # Disabled temporarily
-    # "django.contrib.messages.middleware.MessageMiddleware",  # Disabled temporarily
-    # "django.middleware.clickjacking.XFrameOptionsMiddleware",  # Disabled temporarily
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = "bazarlink.urls"

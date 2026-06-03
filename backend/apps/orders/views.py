@@ -8,24 +8,11 @@ from .serializers import BulkRequestSerializer, OrderSerializer, QuotationSerial
 
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
-    queryset = Order.objects.select_related("customer", "shop").prefetch_related("items").all().order_by("-created_at")
-    filterset_fields = ("status", "shop", "payment_status")
-    search_fields = ("customer__username", "shop__name", "address")
-
-    def get_permissions(self):
-        if self.action in ("create",):
-            return [permissions.IsAuthenticated()]
-        if self.action in ("update", "partial_update", "destroy"):
-            return [role_permission("customer")()]
-        return [permissions.IsAuthenticated()]
+    queryset = Order.objects.all().order_by("-created_at")
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        if user.is_market_admin:
-            return self.queryset
-        if user.role == "shopkeeper":
-            return self.queryset.filter(shop__owner=user)
-        return self.queryset.filter(customer=user)
+        return self.queryset
 
     def perform_create(self, serializer):
         serializer.save(customer=self.request.user)

@@ -16,18 +16,12 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True)
-    shop_name = serializers.CharField(source="shop.name", read_only=True)
-    customer_name = serializers.CharField(source="customer.get_full_name", read_only=True)
-
     class Meta:
         model = Order
         fields = (
             "id",
             "customer",
-            "customer_name",
             "shop",
-            "shop_name",
             "status",
             "address",
             "payment_method",
@@ -35,7 +29,6 @@ class OrderSerializer(serializers.ModelSerializer):
             "subtotal",
             "delivery_fee",
             "total",
-            "items",
             "created_at",
             "updated_at",
         )
