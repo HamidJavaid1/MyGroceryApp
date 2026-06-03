@@ -34,9 +34,12 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def recalculate(self):
-        self.subtotal = sum(item.line_total for item in self.items.all())
-        self.total = self.subtotal + self.delivery_fee
-        self.save(update_fields=["subtotal", "total", "updated_at"])
+        try:
+            self.subtotal = sum(item.line_total for item in self.items.all())
+            self.total = self.subtotal + self.delivery_fee
+            self.save(update_fields=["subtotal", "total", "updated_at"])
+        except Exception:
+            pass
 
 
 class OrderItem(models.Model):

@@ -3,13 +3,28 @@ from rest_framework import decorators, permissions, response, status, viewsets
 from apps.users.permissions import role_permission
 
 from .models import BulkRequest, Order, Quotation
-from .serializers import BulkRequestSerializer, OrderSerializer, QuotationSerializer
+from .serializers import BulkRequestSerializer, OrderCreateSerializer, OrderSerializer, QuotationSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     queryset = Order.objects.all().order_by("-created_at")
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return OrderCreateSerializer
+        return OrderSerializer
+
+    def list(self, request, *args, **kwargs):
+        try:
+            return super().list(request, *args, **kwargs)
+        except Exception as e:
+            import traceback
+            return response.Response(
+                {"error": str(e), "traceback": traceback.format_exc()},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
     def get_queryset(self):
         return self.queryset

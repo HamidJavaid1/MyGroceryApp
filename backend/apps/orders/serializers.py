@@ -9,6 +9,8 @@ from .models import BulkRequest, Order, OrderItem, Quotation
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+
     class Meta:
         model = OrderItem
         fields = ("id", "product", "quantity", "unit_price", "line_total")
@@ -16,10 +18,6 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    customer = serializers.StringRelatedField()
-    shop = serializers.StringRelatedField()
-    items = OrderItemSerializer(many=True, write_only=True)
-
     class Meta:
         model = Order
         fields = (
@@ -33,19 +31,27 @@ class OrderSerializer(serializers.ModelSerializer):
             "subtotal",
             "delivery_fee",
             "total",
-            "items",
             "created_at",
             "updated_at",
         )
-        read_only_fields = ("id", "customer", "shop", "subtotal", "total", "created_at", "updated_at")
 
-    def validate(self, attrs):
-        request = self.context.get("request")
-        # Only validate on create action
-        view = self.context.get("view")
-        if view and hasattr(view, "action") and view.action != "create":
-            return attrs
-        return attrs
+
+class OrderCreateSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = (
+            "shop",
+            "status",
+            "address",
+            "payment_method",
+            "payment_status",
+            "subtotal",
+            "delivery_fee",
+            "total",
+            "items",
+        )
 
     @transaction.atomic
     def create(self, validated_data):
