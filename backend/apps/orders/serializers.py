@@ -36,6 +36,9 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         request = self.context.get("request")
+        # Only validate on create, not on list/retrieve
+        if self.instance is not None:
+            return attrs
         if request and not request.user.is_market_admin and request.user.role != User.Role.CUSTOMER:
             raise serializers.ValidationError({"detail": "Only customers can place retail orders."})
         shop = attrs.get("shop")
