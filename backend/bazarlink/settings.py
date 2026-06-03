@@ -21,7 +21,7 @@ ALLOWED_HOSTS = config(
 
 CSRF_TRUSTED_ORIGINS = config(
     "CSRF_TRUSTED_ORIGINS",
-    default="https://mygroceryapp-4ryn.onrender.com",
+    default="https://mygroceryapp-4ryn.onrender.com,http://mygroceryapp-4ryn.onrender.com",
     cast=Csv()
 )
 
@@ -159,13 +159,29 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
-CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default="", cast=Csv())
-CORS_ALLOW_ALL_ORIGINS = config("CORS_ALLOW_ALL_ORIGINS", default=DEBUG, cast=bool)
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default="https://mygroceryapp-4ryn.onrender.com,http://mygroceryapp-4ryn.onrender.com", cast=Csv())
+CORS_ALLOW_ALL_ORIGINS = config("CORS_ALLOW_ALL_ORIGINS", default=True, cast=bool)
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = config("TIME_ZONE", default="UTC")
 USE_I18N = True
 USE_TZ = True
+
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = "DENY"
+
+# CSRF settings
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = "Lax"
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
