@@ -1,13 +1,10 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.http import JsonResponse
+from django.http import HttpResponse
 from django.urls import include, path
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
 from rest_framework.routers import DefaultRouter
 
 from apps.analytics.views import AnalyticsViewSet
@@ -21,16 +18,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 @csrf_exempt
 def api_root(request):
-    return JsonResponse({
-        "message": "BazarLink API",
-        "version": "1.0.0",
-        "endpoints": {
-            "api": "/api/v1/",
-            "docs": "/api/v1/docs/",
-            "schema": "/api/v1/schema/",
-            "admin": "/admin/"
-        }
-    })
+    return HttpResponse("BazarLink API is running", content_type="text/plain")
 
 router = DefaultRouter()
 router.register("auth", AuthViewSet, basename="auth")
