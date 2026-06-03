@@ -1,0 +1,6 @@
+<resources>
+    <plurals name="scanner_items_detected">
+        <item quantity="one">1 item detected</item>
+        <item quantity="other">%d items detected</item>
+    </plurals>
+</resources>

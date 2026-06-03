@@ -1,0 +1,10 @@
+<resources>
+    <!-- AppCompatActivity (scanner screens) requires an AppCompat theme. -->
+    <style name="Theme.BazarLink.Scanner" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#102A49</item>
+        <item name="colorPrimaryDark">#0A223D</item>
+        <item name="colorAccent">#67E8F9</item>
+        <item name="android:windowBackground">#D8EEFC</item>
+        <item name="android:statusBarColor">#102A49</item>
+    </style>
+</resources>

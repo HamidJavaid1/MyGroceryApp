@@ -6,8 +6,11 @@ import com.bazarlink.shared.api.ApiClient;
 import com.bazarlink.shared.models.Page;
 import com.bazarlink.shared.models.WholesalerDashboard;
 import com.bazarlink.shared.api.BazarLinkApi;
+import com.bazarlink.shared.models.BulkRequest;
 import com.bazarlink.shared.models.Order;
 import com.bazarlink.shared.models.NotificationItem;
+import com.bazarlink.shared.models.Product;
+import com.bazarlink.shared.models.Shop;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,9 +84,50 @@ public class WholesalerRepository {
         });
     }
 
-    public void loadInventoryAlerts(Callback1<List<com.bazarlink.shared.models.Product>> cb) {
-        // Not directly provided by API besides dashboard low_stock_alerts; keep placeholder for future.
-        cb.onError("Inventory list not implemented via repository; use dashboard low_stock_alerts");
+    public void loadProducts(Map<String, String> filters, Callback1<Page<Product>> cb) {
+        if (filters == null) filters = new HashMap<>();
+        api.products(filters).enqueue(new Callback<Page<Product>>() {
+            @Override
+            public void onResponse(Call<Page<Product>> call, Response<Page<Product>> response) {
+                if (response.isSuccessful() && response.body() != null) cb.onSuccess(response.body());
+                else cb.onError("Failed to load products");
+            }
+
+            @Override
+            public void onFailure(Call<Page<Product>> call, Throwable t) {
+                cb.onError(t.getMessage() == null ? "Network error" : t.getMessage());
+            }
+        });
+    }
+
+    public void loadShops(Callback1<List<Shop>> cb) {
+        api.nearbyShops(24.9133, 67.0971, 25.0, null).enqueue(new Callback<List<Shop>>() {
+            @Override
+            public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                if (response.isSuccessful() && response.body() != null) cb.onSuccess(response.body());
+                else cb.onError("Failed to load shops");
+            }
+
+            @Override
+            public void onFailure(Call<List<Shop>> call, Throwable t) {
+                cb.onError(t.getMessage() == null ? "Network error" : t.getMessage());
+            }
+        });
+    }
+
+    public void loadBulkRequests(Callback1<Page<BulkRequest>> cb) {
+        api.bulkRequests().enqueue(new Callback<Page<BulkRequest>>() {
+            @Override
+            public void onResponse(Call<Page<BulkRequest>> call, Response<Page<BulkRequest>> response) {
+                if (response.isSuccessful() && response.body() != null) cb.onSuccess(response.body());
+                else cb.onError("Failed to load bulk orders");
+            }
+
+            @Override
+            public void onFailure(Call<Page<BulkRequest>> call, Throwable t) {
+                cb.onError(t.getMessage() == null ? "Network error" : t.getMessage());
+            }
+        });
     }
 
     public void loadNotifications(Callback1<Page<NotificationItem>> cb) {

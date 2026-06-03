@@ -1,17 +1,14 @@
-package com.bazarlink.wholesaler;
+package com.bazarlink.shopkeeper;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
-public final class WholesalerUiUtils {
-    private WholesalerUiUtils() {}
+public final class ShopkeeperUiUtils {
+    private ShopkeeperUiUtils() {}
 
     public static int dp(Context ctx, int value) {
         return Math.round(TypedValue.applyDimension(
@@ -35,21 +32,4 @@ public final class WholesalerUiUtils {
         view.setLayoutParams(new LinearLayout.LayoutParams(-1, height));
         return view;
     }
-
-    public static TextView toastLikeTitle(Context ctx, @Nullable String text) {
-        TextView tv = new TextView(ctx);
-        tv.setText(text == null ? "" : text);
-        tv.setTextSize(18);
-        tv.setTextColor(Color.WHITE);
-        tv.setTypeface(tv.getTypeface(), android.graphics.Typeface.BOLD);
-        tv.setGravity(Gravity.START);
-        return tv;
-    }
-
-    public static LinearLayout newColumn(Context ctx) {
-        LinearLayout ll = new LinearLayout(ctx);
-        ll.setOrientation(LinearLayout.VERTICAL);
-        return ll;
-    }
 }
-

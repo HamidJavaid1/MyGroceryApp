@@ -1,4 +1,4 @@
-package com.bazarlink.wholesaler;
+package com.bazarlink.shopkeeper;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,30 +21,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bazarlink.shared.api.ApiClient;
 import com.bazarlink.shared.api.ApiConfig;
-import com.bazarlink.shared.api.TokenStore;
 import com.bazarlink.shared.inventory.InventoryController;
-import com.bazarlink.shared.models.BulkRequest;
-import com.bazarlink.shared.models.Quotation;
+import com.bazarlink.shared.api.TokenStore;
 import com.bazarlink.shared.models.Order;
 import com.bazarlink.shared.models.Page;
 import com.bazarlink.shared.models.Product;
-import com.bazarlink.shared.models.Shop;
 import com.bazarlink.shared.models.WholesalerDashboard;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final int DRAWER_WIDTH_DP = 292;
@@ -53,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout content;
     private BottomNavigationView nav;
     private String profileName;
-    private WholesalerRepository repository;
+    private ShopkeeperRepository repository;
     private String activeScreen = "Dashboard";
 
     private FrameLayout rootContainer;
@@ -65,16 +53,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         profileName = getIntent().getStringExtra("display_name");
         if (profileName == null || profileName.trim().isEmpty()) {
-            profileName = "Noor Din";
+            profileName = "Shopkeeper";
         }
         // Important: profileName must never block inventory operations.
         // If caller passes an empty name (or an async load fails), we still allow product creation/restock flows.
         if (profileName != null) {
             profileName = profileName.trim();
-            if (profileName.isEmpty()) profileName = "Noor Din";
+            if (profileName.isEmpty()) profileName = "Shopkeeper";
         }
 
-        repository = new WholesalerRepository(this, repositoryDefaultBaseUrl());
+        repository = new ShopkeeperRepository(this, repositoryDefaultBaseUrl());
 
         rootContainer = new FrameLayout(this);
         rootContainer.setBackgroundColor(Color.parseColor("#0E2236"));
@@ -93,9 +81,8 @@ public class MainActivity extends AppCompatActivity {
         nav = new BottomNavigationView(this);
         nav.getMenu().add(0, 1, 0, "Dashboard").setIcon(android.R.drawable.ic_menu_view);
         nav.getMenu().add(0, 2, 1, "Inventory").setIcon(android.R.drawable.ic_menu_sort_by_size);
-        nav.getMenu().add(0, 3, 2, "Bulk Orders").setIcon(android.R.drawable.ic_menu_agenda);
-        nav.getMenu().add(0, 4, 3, "Shops").setIcon(android.R.drawable.ic_menu_myplaces);
-        nav.getMenu().add(0, 5, 4, "Settings").setIcon(android.R.drawable.ic_menu_preferences);
+        nav.getMenu().add(0, 3, 2, "Orders").setIcon(android.R.drawable.ic_menu_agenda);
+        nav.getMenu().add(0, 4, 3, "Settings").setIcon(android.R.drawable.ic_menu_preferences);
         nav.setOnItemSelectedListener(item -> {
             activeScreen = item.getTitle().toString();
             render(activeScreen);
@@ -124,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void render(String screen) {
         activeScreen = screen;
-        syncDrawerSelection();
         content.removeAllViews();
         content.setPadding(28, 28, 28, 28);
 
@@ -140,10 +126,8 @@ public class MainActivity extends AppCompatActivity {
             renderDashboard();
         } else if ("Inventory".equals(screen)) {
             renderInventory();
-        } else if ("Bulk Orders".equals(screen)) {
-            renderBulkOrders();
-        } else if ("Shops".equals(screen)) {
-            renderShops();
+        } else if ("Orders".equals(screen)) {
+            renderOrders();
         }
     }
 
@@ -151,15 +135,10 @@ public class MainActivity extends AppCompatActivity {
         activeScreen = screen;
         int navId = 1;
         if ("Inventory".equals(screen)) navId = 2;
-        else if ("Bulk Orders".equals(screen)) navId = 3;
-        else if ("Shops".equals(screen)) navId = 4;
-        else if ("Settings".equals(screen)) navId = 5;
+        else if ("Orders".equals(screen)) navId = 3;
+        else if ("Settings".equals(screen)) navId = 4;
         nav.setSelectedItemId(navId);
         render(screen);
-    }
-
-    private void syncDrawerSelection() {
-        // Drawer highlights are rebuilt when opened; selection is applied on navigate.
     }
 
     private String repositoryDefaultBaseUrl() {
@@ -176,19 +155,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void renderDashboard() {
         TextView loading = new TextView(this);
-        loading.setText("Loading wholesale metrics...");
+        loading.setText("Loading shop metrics...");
         loading.setTextColor(Color.parseColor("#B7C8D8"));
         content.addView(loading);
 
-        repository.loadDashboard(new WholesalerRepository.Callback1<WholesalerDashboard>() {
+        repository.loadDashboard(new ShopkeeperRepository.Callback1<WholesalerDashboard>() {
             @Override
             public void onSuccess(WholesalerDashboard data) {
-                WholesalerScreenRenderer renderer = renderer();
                 content.removeAllViews();
                 content.setPadding(28, 28, 28, 28);
                 content.addView(headerCard());
                 content.addView(spacer(12));
-                renderer.renderDashboard(data);
+                new ShopkeeperScreenRenderer(MainActivity.this, content).renderDashboard(data);
             }
 
             @Override
@@ -205,17 +183,16 @@ public class MainActivity extends AppCompatActivity {
         loading.setTextColor(Color.parseColor("#B7C8D8"));
         content.addView(loading);
 
-        Map<String, String> filters = new HashMap<>();
-        filters.put("mine", "true");
-        repository.loadProducts(filters, new WholesalerRepository.Callback1<Page<Product>>() {
+        repository.loadProducts(new HashMap<>(), new ShopkeeperRepository.Callback1<Page<Product>>() {
             @Override
             public void onSuccess(Page<Product> page) {
                 List<Product> items = page.results == null ? new ArrayList<>() : page.results;
                 content.removeAllViews();
                 content.setPadding(0, 0, 0, 0);
                 content.addView(headerCard());
-                WholesalerScreenRenderer r = renderer();
-                r.renderInventory(items);
+                ShopkeeperScreenRenderer renderer = new ShopkeeperScreenRenderer(MainActivity.this, content);
+                renderer.bindInventoryActions(new ApiClient(MainActivity.this, repositoryDefaultBaseUrl()), MainActivity.this::renderInventory);
+                renderer.renderInventory(items);
             }
 
             @Override
@@ -226,49 +203,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void renderBulkOrders() {
+    private void renderOrders() {
         TextView loading = new TextView(this);
-        loading.setText("Loading bulk orders...");
+        loading.setText("Loading orders...");
         loading.setTextColor(Color.parseColor("#B7C8D8"));
         content.addView(loading);
 
-        repository.loadBulkRequests(new WholesalerRepository.Callback1<Page<BulkRequest>>() {
+        repository.loadOrders(null, new ShopkeeperRepository.Callback1<Page<Order>>() {
             @Override
-            public void onSuccess(Page<BulkRequest> page) {
+            public void onSuccess(Page<Order> page) {
                 content.removeAllViews();
-                content.setPadding(0, 0, 0, 0);
+                content.setPadding(28, 28, 28, 28);
                 content.addView(headerCard());
-                WholesalerScreenRenderer r = renderer();
-                r.renderBulkOrders(page);
+                content.addView(spacer(12));
+                new ShopkeeperScreenRenderer(MainActivity.this, content).renderOrders(page, (order, newStatus) -> {
+                    toast("Updating order #" + order.id + "...");
+                    repository.transitionOrder(order.id, newStatus, new ShopkeeperRepository.Callback1<Order>() {
+                        @Override
+                        public void onSuccess(Order updated) {
+                            toast("Order updated: " + updated.status);
+                            renderOrders();
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            toast(message);
+                        }
+                    });
+                });
             }
 
             @Override
             public void onError(String message) {
                 toast(message);
-                card("Bulk orders error", message);
-            }
-        });
-    }
-
-    private void renderShops() {
-        TextView loading = new TextView(this);
-        loading.setText("Loading shops...");
-        loading.setTextColor(Color.parseColor("#B7C8D8"));
-        content.addView(loading);
-
-        repository.loadShops(new WholesalerRepository.Callback1<List<Shop>>() {
-            @Override
-            public void onSuccess(List<Shop> shops) {
-                content.removeAllViews();
-                content.setPadding(0, 0, 0, 0);
-                content.addView(headerCard());
-                renderer().renderShops(shops);
-            }
-
-            @Override
-            public void onError(String message) {
-                toast(message);
-                card("Shops error", message);
+                card("Orders error", message);
             }
         });
     }
@@ -276,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
     private void renderSettings() {
         content.addView(headerCard());
         content.addView(spacer(12));
-        addTitle("Settings", "Manage your wholesale distribution preferences");
+        addTitle("Settings", "Manage your retail shop preferences");
         content.addView(spacer(10));
         content.addView(topProfileCard());
         content.addView(spacer(16));
@@ -329,13 +297,8 @@ public class MainActivity extends AppCompatActivity {
         name.setGravity(Gravity.CENTER);
         row.addView(name, new LinearLayout.LayoutParams(0, -2, 1f));
 
-        TextView avatar = circleIcon();
-        row.addView(avatar);
-
+        row.addView(circleIcon());
         card.addView(row);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
-        params.bottomMargin = dp(4);
-        card.setLayoutParams(params);
         return card;
     }
 
@@ -354,8 +317,7 @@ public class MainActivity extends AppCompatActivity {
         header.setGravity(Gravity.CENTER_VERTICAL);
 
         TextView avatar = circleIcon();
-        LinearLayout.LayoutParams avatarParams = new LinearLayout.LayoutParams(dp(38), dp(38));
-        header.addView(avatar, avatarParams);
+        header.addView(avatar, new LinearLayout.LayoutParams(dp(38), dp(38)));
 
         LinearLayout info = new LinearLayout(this);
         info.setOrientation(LinearLayout.VERTICAL);
@@ -370,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
         name.setTypeface(name.getTypeface(), android.graphics.Typeface.BOLD);
 
         TextView role = new TextView(this);
-        role.setText("Wholesale Manager");
+        role.setText("Shop Manager");
         role.setTextColor(Color.parseColor("#B3C7D8"));
         role.setTextSize(12);
 
@@ -392,18 +354,14 @@ public class MainActivity extends AppCompatActivity {
         box.addView(spacer(10));
         box.addView(drawerItem("Inventory"));
         box.addView(spacer(10));
-        box.addView(drawerItem("Bulk Orders"));
-        box.addView(spacer(10));
-        box.addView(drawerItem("Shops"));
+        box.addView(drawerItem("Orders"));
         box.addView(spacer(10));
         box.addView(drawerItem("Settings"));
 
         View flex = new View(this);
         flex.setLayoutParams(new LinearLayout.LayoutParams(-1, 0, 1f));
         box.addView(flex);
-
-        MaterialCardView logout = drawerItem("Logout");
-        box.addView(logout);
+        box.addView(drawerItem("Logout"));
 
         panel.addView(box, new LinearLayout.LayoutParams(-1, -1));
         return panel;
@@ -451,102 +409,8 @@ public class MainActivity extends AppCompatActivity {
                 .withEndAction(() -> drawerScrim.setVisibility(View.GONE)).start();
     }
 
-    private WholesalerScreenRenderer renderer() {
-        WholesalerScreenRenderer r = new WholesalerScreenRenderer(this, content, Toast.makeText(this, "", Toast.LENGTH_SHORT));
-        ApiClient client = new ApiClient(this, repositoryDefaultBaseUrl());
-        r.bindInventoryActions(client, this::renderInventory);
-        r.bindBulkQuoteHandler(this::showBulkQuoteDialog);
-        r.bindBulkDispatchHandler(this::dispatchBulkRequest);
-        return r;
-    }
-
-    private void dispatchBulkRequest(BulkRequest request) {
-        new ApiClient(this, repositoryDefaultBaseUrl()).api().dispatchBulkRequest(request.id).enqueue(new Callback<BulkRequest>() {
-            @Override
-            public void onResponse(Call<BulkRequest> call, Response<BulkRequest> response) {
-                if (response.isSuccessful()) {
-                    toast("Dispatched");
-                    renderBulkOrders();
-                } else {
-                    String message = "Dispatch failed";
-                    try {
-                        if (response.errorBody() != null) {
-                            String body = response.errorBody().string().trim();
-                            if (!body.isEmpty()) {
-                                message = body;
-                            }
-                        }
-                    } catch (IOException ignored) {
-                    }
-                    toast(message);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BulkRequest> call, Throwable t) {
-                toast("Dispatch failed: " + (t.getMessage() == null ? "network error" : t.getMessage()));
-            }
-        });
-    }
-
-    private void showBulkQuoteDialog(BulkRequest request) {
-        LinearLayout dialog = new LinearLayout(this);
-        dialog.setOrientation(LinearLayout.VERTICAL);
-        dialog.setPadding(dp(20), dp(16), dp(20), dp(8));
-        EditText price = new EditText(this);
-        price.setHint("Price per unit");
-        price.setText("1200");
-        EditText fee = new EditText(this);
-        fee.setHint("Delivery fee");
-        fee.setText("500");
-        EditText message = new EditText(this);
-        message.setHint("Message");
-        message.setText("Bulk quote for your request");
-        dialog.addView(price);
-        dialog.addView(fee);
-        dialog.addView(message);
-        new android.app.AlertDialog.Builder(this)
-                .setTitle("Quote for request #" + request.id)
-                .setView(dialog)
-                .setPositiveButton("Send", (d, w) -> {
-                    Quotation body = new Quotation();
-                    body.bulk_request = request.id;
-                    try {
-                        body.price_per_unit = new BigDecimal(price.getText().toString().trim());
-                        body.delivery_fee = new BigDecimal(fee.getText().toString().trim());
-                    } catch (Exception e) {
-                        toast("Invalid price");
-                        return;
-                    }
-                    body.message = message.getText().toString().trim();
-                    Calendar cal = Calendar.getInstance();
-                    cal.add(Calendar.DAY_OF_MONTH, 7);
-                    body.valid_until = String.format(Locale.US, "%04d-%02d-%02dT%02d:%02d:%02dZ",
-                            cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH),
-                            cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
-                    new ApiClient(this, repositoryDefaultBaseUrl()).api().createQuotation(body).enqueue(new Callback<Quotation>() {
-                        @Override
-                        public void onResponse(Call<Quotation> call, Response<Quotation> response) {
-                            if (response.isSuccessful()) {
-                                toast("Quotation sent");
-                                renderBulkOrders();
-                            } else {
-                                toast("Failed to send quotation");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Quotation> call, Throwable t) {
-                            toast("Failed: " + t.getMessage());
-                        }
-                    });
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
-    }
-
     private int dp(int value) {
-        return WholesalerUiUtils.dp(this, value);
+        return ShopkeeperUiUtils.dp(this, value);
     }
 
     private void addTitle(String headerTitle, String subtitle) {
@@ -588,7 +452,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addSectionLabel(String label) {
-        content.addView(WholesalerUiUtils.sectionLabel(this, label));
+        content.addView(ShopkeeperUiUtils.sectionLabel(this, label));
     }
 
     private MaterialCardView topProfileCard() {
@@ -598,7 +462,18 @@ public class MainActivity extends AppCompatActivity {
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setPadding(24, 24, 24, 24);
 
-        row.addView(circleIcon());
+        TextView avatar = new TextView(this);
+        avatar.setText("S");
+        avatar.setTextSize(28);
+        avatar.setGravity(Gravity.CENTER);
+        avatar.setTextColor(Color.parseColor("#BDEFFF"));
+        GradientDrawable bg = new GradientDrawable();
+        bg.setShape(GradientDrawable.OVAL);
+        bg.setStroke(2, Color.parseColor("#2FC8E7"));
+        bg.setColor(Color.parseColor("#153447"));
+        avatar.setBackground(bg);
+        avatar.setLayoutParams(new LinearLayout.LayoutParams(124, 124));
+        row.addView(avatar);
 
         LinearLayout info = new LinearLayout(this);
         info.setOrientation(LinearLayout.VERTICAL);
@@ -613,13 +488,13 @@ public class MainActivity extends AppCompatActivity {
         name.setTypeface(name.getTypeface(), android.graphics.Typeface.BOLD);
 
         TextView role = new TextView(this);
-        role.setText("WHOLESALE MANAGER");
+        role.setText("SHOP MANAGER");
         role.setTextSize(13);
         role.setLetterSpacing(0.12f);
         role.setTextColor(Color.parseColor("#C2D0DE"));
 
         TextView adminId = new TextView(this);
-        adminId.setText("Admin ID: 8842");
+        adminId.setText("Shop ID: 8842");
         adminId.setTextSize(16);
         adminId.setTextColor(Color.parseColor("#D8E6F2"));
 
@@ -777,7 +652,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private View spacer(int height) {
-        return WholesalerUiUtils.spacer(this, height);
+        return ShopkeeperUiUtils.spacer(this, height);
     }
 
     private View logoutButton() {
@@ -804,8 +679,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView circleIcon() {
         TextView icon = new TextView(this);
-        icon.setText("◉");
-        icon.setTextSize(28);
+        icon.setText("S");
+        icon.setTextSize(20);
         icon.setGravity(Gravity.CENTER);
         icon.setTextColor(Color.parseColor("#BDEFFF"));
         GradientDrawable bg = new GradientDrawable();
@@ -813,8 +688,7 @@ public class MainActivity extends AppCompatActivity {
         bg.setStroke(2, Color.parseColor("#2FC8E7"));
         bg.setColor(Color.parseColor("#153447"));
         icon.setBackground(bg);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dp(44), dp(44));
-        icon.setLayoutParams(params);
+        icon.setLayoutParams(new LinearLayout.LayoutParams(dp(44), dp(44)));
         return icon;
     }
 
