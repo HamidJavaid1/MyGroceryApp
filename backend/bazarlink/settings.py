@@ -11,8 +11,23 @@ USE_SQLITE = config("USE_SQLITE", default=sys.platform == "win32", cast=bool)
 
 SECRET_KEY = config("SECRET_KEY", default="change-me-in-production")
 DEBUG = config("DEBUG", default=USE_SQLITE, cast=bool)
+<<<<<<< HEAD
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1,mygroceryapp-4ryn.onrender.com", cast=Csv())
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", default="https://mygroceryapp-4ryn.onrender.com", cast=Csv())
+=======
+
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    default="localhost,127.0.0.1,mygroceryapp-4ryn.onrender.com",
+    cast=Csv()
+)
+
+CSRF_TRUSTED_ORIGINS = config(
+    "CSRF_TRUSTED_ORIGINS",
+    default="https://mygroceryapp-4ryn.onrender.com",
+    cast=Csv()
+)
+>>>>>>> b944e27cc3c48cca2f179aa52fa78abf8f4a8514
 
 INSTALLED_APPS = [
     "jazzmin",
@@ -36,7 +51,6 @@ INSTALLED_APPS = [
     "apps.analytics",
 ]
 
-# Payment gateways — mock mode works without merchant credentials (sandbox OTP: any 4+ digits).
 PAYMENT_GATEWAY_MODE = config("PAYMENT_GATEWAY_MODE", default="mock")
 EASYPAISA_STORE_ID = config("EASYPAISA_STORE_ID", default="")
 EASYPAISA_API_KEY = config("EASYPAISA_API_KEY", default="")
@@ -70,12 +84,14 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
-        "OPTIONS": {"context_processors": [
-            "django.template.context_processors.debug",
-            "django.template.context_processors.request",
-            "django.contrib.auth.context_processors.auth",
-            "django.contrib.messages.context_processors.messages",
-        ]},
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
+        },
     }
 ]
 
@@ -84,6 +100,12 @@ if USE_SQLITE:
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels.layers.InMemoryChannelLayer"
         }
     }
 else:
@@ -98,13 +120,12 @@ else:
         }
     }
 
-if USE_SQLITE:
-    CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
-else:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {"hosts": [config("REDIS_URL", default="redis://localhost:6379/0")]},
+            "CONFIG": {
+                "hosts": [config("REDIS_URL", default="redis://localhost:6379/0")]
+            },
         }
     }
 
@@ -117,7 +138,9 @@ REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
@@ -153,6 +176,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 WHITENOISE_MANIFEST_STRICT = False
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
