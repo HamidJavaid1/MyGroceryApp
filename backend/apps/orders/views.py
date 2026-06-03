@@ -8,7 +8,7 @@ from .serializers import BulkRequestSerializer, OrderSerializer, QuotationSerial
 
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
-    queryset = Order.objects.select_related("customer", "shop").prefetch_related("items").order_by("-created_at")
+    queryset = Order.objects.select_related("customer", "shop").prefetch_related("items").all().order_by("-created_at")
     filterset_fields = ("status", "shop", "payment_status")
     search_fields = ("customer__username", "shop__name", "address")
 
