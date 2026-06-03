@@ -29,24 +29,25 @@ def api_root(request):
         }
     })
 
-router = DefaultRouter()
-router.register("auth", AuthViewSet, basename="auth")
-router.register("users", UserViewSet, basename="users")
-router.register("categories", CategoryViewSet)
-router.register("products", ProductViewSet)
-router.register("reviews", ReviewViewSet)
-router.register("shops", ShopViewSet)
-router.register("orders", OrderViewSet)
-router.register("bulk-requests", BulkRequestViewSet)
-router.register("quotations", QuotationViewSet)
-router.register("notifications", NotificationViewSet)
-router.register("analytics", AnalyticsViewSet, basename="analytics")
+# Temporarily disable router to isolate 400 error
+# router = DefaultRouter()
+# router.register("auth", AuthViewSet, basename="auth")
+# router.register("users", UserViewSet, basename="users")
+# router.register("categories", CategoryViewSet)
+# router.register("products", ProductViewSet)
+# router.register("reviews", ReviewViewSet)
+# router.register("shops", ShopViewSet)
+# router.register("orders", OrderViewSet)
+# router.register("bulk-requests", BulkRequestViewSet)
+# router.register("quotations", QuotationViewSet)
+# router.register("notifications", NotificationViewSet)
+# router.register("analytics", AnalyticsViewSet, basename="analytics")
 
 urlpatterns = [
     path("", api_root),
     path("admin/", admin.site.urls),
-    path("api/v1/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("api/v1/", include(router.urls)),
-    path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),
-    path("api/v1/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    # path("api/v1/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    # path("api/v1/", include(router.urls)),
+    # path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),
+    # path("api/v1/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
