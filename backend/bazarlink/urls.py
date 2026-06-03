@@ -20,7 +20,6 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 
 @csrf_exempt
-@require_http_methods(["GET"])
 def api_root(request):
     return JsonResponse({
         "message": "BazarLink API",

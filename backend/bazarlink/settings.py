@@ -176,6 +176,9 @@ TIME_ZONE = config("TIME_ZONE", default="UTC")
 USE_I18N = True
 USE_TZ = True
 
+# Disable APPEND_SLASH to prevent 400 errors on root URL
+APPEND_SLASH = False
+
 # Security settings for production
 if not DEBUG:
     # Disabled SSL redirect temporarily - Render handles SSL
