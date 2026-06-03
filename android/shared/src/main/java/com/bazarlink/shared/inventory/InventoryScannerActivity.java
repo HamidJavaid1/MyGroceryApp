@@ -19,8 +19,10 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
@@ -568,6 +570,7 @@ public class InventoryScannerActivity extends AppCompatActivity {
         }
     }
 
+    @OptIn(markerClass = ExperimentalGetImage.class)
     private void analyzeFrame(@NonNull ImageProxy imageProxy) {
         if (!analyzing.compareAndSet(false, true)) {
             imageProxy.close();

@@ -1981,6 +1981,10 @@
     <item quantity="one"><ns2:g id="count">%d</ns2:g> new notification</item>
     <item quantity="other"><ns2:g id="count">%d</ns2:g> new notifications</item>
   </plurals>
+    <plurals name="scanner_items_detected">
+        <item quantity="one">1 item detected</item>
+        <item quantity="other">%d items detected</item>
+    </plurals>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_up_description">Navigate up</string>
     <string name="abc_action_menu_overflow_description">More options</string>
@@ -6436,6 +6440,13 @@
         <item name="colorPrimary">@color/bazar_primary</item>
         <item name="colorSecondary">@color/bazar_secondary</item>
         <item name="fontFamily">sans</item>
+    </style>
+    <style name="Theme.BazarLink.Scanner" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#102A49</item>
+        <item name="colorPrimaryDark">#0A223D</item>
+        <item name="colorAccent">#67E8F9</item>
+        <item name="android:windowBackground">#D8EEFC</item>
+        <item name="android:statusBarColor">#102A49</item>
     </style>
     <style name="Theme.Design" parent="Theme.AppCompat">
   </style>

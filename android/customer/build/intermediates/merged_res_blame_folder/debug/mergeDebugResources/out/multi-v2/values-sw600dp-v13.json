@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bazarlink.customer-mergeDebugResources-50:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.bazarlink.customer-mergeDebugResources-58:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\hamid\\.gradle\\caches\\9.0-milestone-1\\transforms\\74b77f1253ff1b21dd9c48bc364dad7c\\transformed\\appcompat-1.7.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\hamid\\.gradle\\caches\\8.9\\transforms\\898b79dd632f89eb91b6f092b9b23fc3\\transformed\\appcompat-1.7.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\hamid\\.gradle\\caches\\9.0-milestone-1\\transforms\\f473ae9980984eb9fc475ca08d7bf27e\\transformed\\material-1.12.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\hamid\\.gradle\\caches\\8.9\\transforms\\81335119a568adab27dfc9fa2e61a412\\transformed\\material-1.12.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",

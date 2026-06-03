@@ -4,31 +4,4 @@
 
     <uses-sdk android:minSdkVersion="26" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-
-    <application>
-        <activity
-            android:name="com.bazarlink.shared.inventory.BarcodeScannerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BazarLink.Scanner" />
-        <activity
-            android:name="com.bazarlink.shared.inventory.InventoryScannerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BazarLink.Scanner" />
-        <activity
-            android:name="com.bazarlink.shared.inventory.LabelTextScanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BazarLink.Scanner" />
-    </application>
-
 </manifest>

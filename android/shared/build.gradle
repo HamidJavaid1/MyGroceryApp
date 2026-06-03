@@ -1,0 +1,37 @@
+plugins {
+    id "com.android.library"
+}
+
+android {
+    namespace "com.bazarlink.shared"
+    compileSdk 35
+    defaultConfig {
+        minSdk 26
+        consumerProguardFiles "consumer-rules.pro"
+    }
+}
+
+dependencies {
+    api "androidx.appcompat:appcompat:1.7.0"
+    api "com.google.android.material:material:1.12.0"
+    api "androidx.constraintlayout:constraintlayout:2.2.0"
+    api "androidx.room:room-runtime:2.6.1"
+    annotationProcessor "androidx.room:room-compiler:2.6.1"
+    api "com.squareup.retrofit2:retrofit:2.11.0"
+    api "com.squareup.retrofit2:converter-gson:2.11.0"
+    api "com.squareup.okhttp3:logging-interceptor:4.12.0"
+    api "com.github.bumptech.glide:glide:4.16.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.16.0"
+    api "com.google.firebase:firebase-auth:23.1.0"
+    api "com.google.firebase:firebase-messaging:24.1.0"
+    api "com.google.android.gms:play-services-auth:21.3.0"
+    api "com.google.android.gms:play-services-maps:19.0.0"
+    api "com.airbnb.android:lottie:6.6.2"
+    api "com.github.PhilJay:MPAndroidChart:v3.1.0"
+    def camerax = "1.4.1"
+    api "androidx.camera:camera-camera2:$camerax"
+    api "androidx.camera:camera-lifecycle:$camerax"
+    api "androidx.camera:camera-view:$camerax"
+    api "com.google.mlkit:barcode-scanning:17.3.0"
+    api "com.google.mlkit:text-recognition:16.0.1"
+}

@@ -8,8 +8,8 @@ package com.bazarlink.shared.api;
  * </ul>
  */
 public final class ApiConfig {
-    /** PC LAN IP — change this when your network IP changes. */
-    public static final String BASE_URL = "http://192.168.100.1:8000/";
+    /** Live backend on Render */
+    public static final String BASE_URL = "https://mygroceryapp-4ryn.onrender.com/";
 
     /** Emulator alias for the host machine's localhost. */
     public static final String EMULATOR_BASE_URL = "http://10.0.2.2:8000/";

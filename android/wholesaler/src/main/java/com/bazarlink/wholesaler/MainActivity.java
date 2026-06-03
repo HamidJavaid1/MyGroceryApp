@@ -17,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.annotation.SuppressLint;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private View drawerScrim;
     private MaterialCardView drawerPanel;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

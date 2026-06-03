@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
@@ -155,6 +157,7 @@ public class LabelTextScanActivity extends AppCompatActivity {
         });
     }
 
+    @OptIn(markerClass = ExperimentalGetImage.class)
     private void recognizeImage(@NonNull ImageProxy image) {
         android.media.Image mediaImage = image.getImage();
         if (mediaImage == null) {
