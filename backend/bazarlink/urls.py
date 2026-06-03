@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.http import JsonResponse
+from django.http import HttpResponse
 from django.urls import include, path
 from django.views.decorators.csrf import csrf_exempt
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
@@ -18,16 +18,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 @csrf_exempt
 def api_root(request):
-    return JsonResponse({
-        "message": "BazarLink API",
-        "version": "1.0.0",
-        "endpoints": {
-            "api": "/api/v1/",
-            "docs": "/api/v1/docs/",
-            "schema": "/api/v1/schema/",
-            "admin": "/admin/"
-        }
-    })
+    return HttpResponse("BazarLink API is running", content_type="text/plain")
 
 # Temporarily disable router to isolate 400 error
 # router = DefaultRouter()
