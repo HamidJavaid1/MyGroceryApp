@@ -18,6 +18,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     customer = serializers.StringRelatedField()
     shop = serializers.StringRelatedField()
+    items = OrderItemSerializer(many=True, write_only=True)
 
     class Meta:
         model = Order
@@ -32,6 +33,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "subtotal",
             "delivery_fee",
             "total",
+            "items",
             "created_at",
             "updated_at",
         )
@@ -43,7 +45,6 @@ class OrderSerializer(serializers.ModelSerializer):
         view = self.context.get("view")
         if view and hasattr(view, "action") and view.action != "create":
             return attrs
-        # Temporarily skip all validation to debug 500 error
         return attrs
 
     @transaction.atomic
