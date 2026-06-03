@@ -13,9 +13,11 @@ services:
       - key: DEBUG
         value: false
       - key: ALLOWED_HOSTS
-        value: mygroceryapp-4ryn.onrender.com
+        value: "*"
       - key: CSRF_TRUSTED_ORIGINS
-        value: https://mygroceryapp-4ryn.onrender.com
+        value: https://mygroceryapp-4ryn.onrender.com,http://mygroceryapp-4ryn.onrender.com
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: true
       - key: USE_SQLITE
         value: false
       - key: POSTGRES_HOST
