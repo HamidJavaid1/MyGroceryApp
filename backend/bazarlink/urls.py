@@ -45,7 +45,7 @@ def api_root(request):
 
 urlpatterns = [
     path("", api_root),
-    path("admin/", admin.site.urls),
+    # path("admin/", admin.site.urls),
     # path("api/v1/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     # path("api/v1/", include(router.urls)),
     # path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),
