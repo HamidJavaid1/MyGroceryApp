@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.http import JsonResponse
 from django.urls import include, path
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -18,9 +19,8 @@ from apps.users.views import AuthViewSet, UserViewSet
 from rest_framework_simplejwt.views import TokenRefreshView
 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
 @csrf_exempt
+@require_http_methods(["GET"])
 def api_root(request):
     return JsonResponse({
         "message": "BazarLink API",
