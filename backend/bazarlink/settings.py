@@ -11,7 +11,7 @@ USE_SQLITE = config("USE_SQLITE", default=sys.platform == "win32", cast=bool)
 
 SECRET_KEY = config("SECRET_KEY", default="change-me-in-production")
 DEBUG = config("DEBUG", default=USE_SQLITE, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1", cast=Csv())
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="https://mygroceryapp-4ryn.onrender.com/", cast=Csv())
 
 INSTALLED_APPS = [
     "jazzmin",
