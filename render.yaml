@@ -5,6 +5,7 @@ services:
     dockerContext: ./backend
     dockerfilePath: ./backend/Dockerfile
     plan: free
+    healthCheckPath: /
     envVars:
       - key: PORT
         value: 8000
