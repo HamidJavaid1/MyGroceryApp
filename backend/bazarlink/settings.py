@@ -15,7 +15,7 @@ DEBUG = config("DEBUG", default=USE_SQLITE, cast=bool)
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    default="localhost,127.0.0.1,mygroceryapp-4ryn.onrender.com",
+    default="*",
     cast=Csv()
 )
 
@@ -169,9 +169,9 @@ USE_TZ = True
 
 # Security settings for production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = False  # Disabled temporarily for debugging
+    SESSION_COOKIE_SECURE = False  # Disabled temporarily for debugging
+    CSRF_COOKIE_SECURE = False  # Disabled temporarily for debugging
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
