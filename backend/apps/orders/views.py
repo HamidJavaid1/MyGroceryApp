@@ -22,16 +22,6 @@ class OrderViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(customer=self.request.user)
 
-    def list(self, request, *args, **kwargs):
-        try:
-            return super().list(request, *args, **kwargs)
-        except Exception as e:
-            import traceback
-            return response.Response(
-                {"error": str(e), "traceback": traceback.format_exc()},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-
     @decorators.action(detail=True, methods=["post"], permission_classes=[role_permission("shopkeeper")])
     def transition(self, request, pk=None):
         order = self.get_object()
