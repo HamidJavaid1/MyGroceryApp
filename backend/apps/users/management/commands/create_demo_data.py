@@ -1,9 +1,11 @@
 from decimal import Decimal
+from datetime import datetime, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 
-from apps.orders.models import Order, OrderItem
+from apps.orders.models import BulkRequest, Order, OrderItem, Quotation
 from apps.products.models import Category, Product
 from apps.shops.models import Shop
 
@@ -148,6 +150,10 @@ class Command(BaseCommand):
         self._create_demo_products_and_orders(shopkeeper, customer)
         self._create_demo_products_and_orders(wholesaler, customer)
 
+        # Create demo bulk requests and quotations for wholesaler
+        self.stdout.write("Creating demo bulk requests and quotations...")
+        self._create_demo_bulk_requests(wholesaler, customer)
+
     def _create_demo_products_and_orders(self, shopkeeper, customer):
         shop = Shop.objects.filter(owner=shopkeeper).first()
         if not shop:
@@ -213,3 +219,37 @@ class Command(BaseCommand):
                 unit_price=product.price,
             )
             self.stdout.write(self.style.SUCCESS(f"Created order #{order.id} for {product.name} - Total: ${total}"))
+
+    def _create_demo_bulk_requests(self, wholesaler, customer):
+        shop = Shop.objects.filter(owner=wholesaler, kind=Shop.Kind.WHOLESALE).first()
+        if not shop:
+            return
+
+        # Get wholesaler products
+        products = Product.objects.filter(shop=shop)[:3]
+        if not products:
+            return
+
+        # Create demo bulk requests
+        for i, product in enumerate(products):
+            bulk_request = BulkRequest.objects.create(
+                customer=customer,
+                product=product,
+                quantity=Decimal("50"),
+                delivery_address=f"{i+1} Bulk Street, City",
+                notes=f"Bulk request for {product.name}",
+                status=BulkRequest.Status.OPEN if i < 2 else BulkRequest.Status.CLOSED,
+            )
+            self.stdout.write(self.style.SUCCESS(f"Created bulk request #{bulk_request.id} for {product.name}"))
+
+            # Create quotation for open requests
+            if bulk_request.status == BulkRequest.Status.OPEN:
+                quotation = Quotation.objects.create(
+                    bulk_request=bulk_request,
+                    wholesaler=wholesaler,
+                    price_per_unit=product.price * Decimal("0.9"),  # 10% discount
+                    delivery_fee=Decimal("5.00"),
+                    valid_until=timezone.now() + timedelta(days=7),
+                    message=f"Special wholesale price for {product.name}",
+                )
+                self.stdout.write(self.style.SUCCESS(f"Created quotation #{quotation.id}"))

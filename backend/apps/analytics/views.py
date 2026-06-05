@@ -37,15 +37,16 @@ class AnalyticsViewSet(viewsets.ViewSet):
             "total_orders": total_orders,
             "pending_orders": pending_orders,
             "delivered_orders": delivered_orders,
-            "total_revenue": total_revenue,
+            "total_sales": total_revenue,
             "total_profit": total_profit,
             "shop_name": shop.name,
         })
 
     @decorators.action(detail=False, methods=["get"], permission_classes=[role_permission("wholesaler")])
     def wholesaler_dashboard(self, request):
-        from apps.orders.models import BulkRequest, Quotation
+        from apps.orders.models import BulkRequest, Order, Quotation
         from apps.shops.models import Shop
+        from decimal import Decimal
         
         user = request.user
         shop = Shop.objects.filter(owner=user, kind=Shop.Kind.WHOLESALE).first()
@@ -58,9 +59,25 @@ class AnalyticsViewSet(viewsets.ViewSet):
         open_requests = bulk_requests.filter(status=BulkRequest.Status.OPEN).count()
         quotations_sent = Quotation.objects.filter(wholesaler=user).count()
         
+        # Calculate total sales and profit from delivered orders
+        orders = Order.objects.filter(shop=shop)
+        total_orders = orders.count()
+        delivered_orders = orders.filter(status=Order.Status.DELIVERED).count()
+        total_sales = orders.filter(status=Order.Status.DELIVERED).aggregate(
+            total=models.Sum("total")
+        )["total"] or 0
+        
+        # Calculate profit (20% margin for demo purposes)
+        profit_margin = Decimal("0.20")
+        total_profit = total_sales * profit_margin if total_sales else Decimal("0")
+        
         return response.Response({
             "total_bulk_requests": total_bulk_requests,
             "open_requests": open_requests,
             "quotations_sent": quotations_sent,
+            "total_orders": total_orders,
+            "delivered_orders": delivered_orders,
+            "total_sales": total_sales,
+            "total_profit": total_profit,
             "shop_name": shop.name,
         })
