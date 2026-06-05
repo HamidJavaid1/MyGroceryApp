@@ -10,8 +10,9 @@ class AnalyticsViewSet(viewsets.ViewSet):
 
     @decorators.action(detail=False, methods=["get"], permission_classes=[role_permission("shopkeeper")])
     def shopkeeper_dashboard(self, request):
-        from apps.orders.models import Order
+        from apps.orders.models import Order, OrderItem
         from apps.shops.models import Shop
+        from decimal import Decimal
         
         user = request.user
         shop = Shop.objects.filter(owner=user).first()
@@ -27,11 +28,17 @@ class AnalyticsViewSet(viewsets.ViewSet):
             total=models.Sum("total")
         )["total"] or 0
         
+        # Calculate profit (revenue - cost - delivery_fee)
+        # Assuming 20% profit margin for demo purposes
+        profit_margin = Decimal("0.20")
+        total_profit = total_revenue * profit_margin if total_revenue else Decimal("0")
+        
         return response.Response({
             "total_orders": total_orders,
             "pending_orders": pending_orders,
             "delivered_orders": delivered_orders,
             "total_revenue": total_revenue,
+            "total_profit": total_profit,
             "shop_name": shop.name,
         })
 
