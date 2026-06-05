@@ -18,6 +18,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    customer = serializers.PrimaryKeyRelatedField(read_only=True)
+    shop = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = Order
         fields = (
@@ -58,7 +61,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         items = validated_data.pop("items")
         order = Order.objects.create(**validated_data)
         for item in items:
-            product = Product.objects.select_for_update().get(pk=item["product"].pk)
+            product = item["product"]
             quantity = item["quantity"]
             product.stock_quantity -= quantity
             product.save(update_fields=["stock_quantity", "updated_at"])
