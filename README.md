@@ -5,7 +5,7 @@
 
 # App Icon 
 
-#<img width="1254" height="1254" alt="ChatGPT Image Jun 5, 2026, 03_37_28 PM" src="https://github.com/user-attachments/assets/09749ae3-0671-49e7-b1d0-f43cc877968f" />
+<img width="1254" height="1254" alt="ChatGPT Image Jun 5, 2026, 03_37_28 PM" src="https://github.com/user-attachments/assets/09749ae3-0671-49e7-b1d0-f43cc877968f" />
 
 
 > **Version:** 1.0.0 | **Platform:** Android | **Category:** Shopping / Grocery
