@@ -1,7 +1,10 @@
+from decimal import Decimal
+
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
-from apps.products.models import Category
+from apps.orders.models import Order, OrderItem
+from apps.products.models import Category, Product
 from apps.shops.models import Shop
 
 User = get_user_model()
@@ -139,3 +142,74 @@ class Command(BaseCommand):
         self.stdout.write("  Shopkeeper: username='demo_shopkeeper', password='DemoPass123!'")
         self.stdout.write("  Wholesaler: username='demo_wholesaler', password='DemoPass123!'")
         self.stdout.write("  Admin: username='admin', password='DemoPass123!'")
+
+        # Create demo products and orders
+        self.stdout.write("Creating demo products and orders...")
+        self._create_demo_products_and_orders(shopkeeper, customer)
+        self._create_demo_products_and_orders(wholesaler, customer)
+
+    def _create_demo_products_and_orders(self, shopkeeper, customer):
+        shop = Shop.objects.filter(owner=shopkeeper).first()
+        if not shop:
+            return
+
+        # Create demo products
+        products_data = [
+            {"name": "Apples", "price": 5.99, "stock_quantity": 100, "category": Category.objects.filter(name="Fruits").first()},
+            {"name": "Carrots", "price": 3.99, "stock_quantity": 150, "category": Category.objects.filter(name="Vegetables").first()},
+            {"name": "Milk", "price": 4.50, "stock_quantity": 80, "category": Category.objects.filter(name="Dairy").first()},
+            {"name": "Chicken", "price": 12.99, "stock_quantity": 50, "category": Category.objects.filter(name="Meat").first()},
+            {"name": "Bread", "price": 2.50, "stock_quantity": 200, "category": Category.objects.filter(name="Bakery").first()},
+        ]
+
+        products = []
+        for prod_data in products_data:
+            category = prod_data.pop("category")
+            if not category:
+                continue
+            product, created = Product.objects.get_or_create(
+                shop=shop,
+                name=prod_data["name"],
+                defaults={
+                    **prod_data,
+                    "category": category,
+                    "description": f"Fresh {prod_data['name']} from our shop",
+                    "unit": "kg",
+                    "is_bulk_available": shop.kind == Shop.Kind.WHOLESALE,
+                    "min_bulk_quantity": 10 if shop.kind == Shop.Kind.WHOLESALE else None,
+                }
+            )
+            if created:
+                products.append(product)
+                self.stdout.write(self.style.SUCCESS(f"Created product: {product.name}"))
+            else:
+                products.append(product)
+
+        # Create demo orders with delivered status for analytics
+        for i in range(5):
+            if not products:
+                break
+            product = products[i % len(products)]
+            quantity = Decimal("2")
+            subtotal = product.price * quantity
+            delivery_fee = Decimal("2.00")
+            total = subtotal + delivery_fee
+            
+            order = Order.objects.create(
+                customer=customer,
+                shop=shop,
+                status=Order.Status.DELIVERED,
+                address=f"{i+1} Test Street, City",
+                payment_method="cash",
+                payment_status=Order.PaymentStatus.PAID,
+                subtotal=subtotal,
+                delivery_fee=delivery_fee,
+                total=total,
+            )
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                quantity=quantity,
+                unit_price=product.price,
+            )
+            self.stdout.write(self.style.SUCCESS(f"Created order #{order.id} for {product.name} - Total: ${total}"))
