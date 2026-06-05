@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
+from apps.products.models import Category
 from apps.shops.models import Shop
 
 User = get_user_model()
@@ -10,6 +11,27 @@ class Command(BaseCommand):
     help = "Create demo data for testing"
 
     def handle(self, *args, **kwargs):
+        # Create demo categories
+        self.stdout.write("Creating demo categories...")
+        categories_data = [
+            {"name": "Fruits", "slug": "fruits"},
+            {"name": "Vegetables", "slug": "vegetables"},
+            {"name": "Dairy", "slug": "dairy"},
+            {"name": "Meat", "slug": "meat"},
+            {"name": "Bakery", "slug": "bakery"},
+            {"name": "Beverages", "slug": "beverages"},
+            {"name": "Snacks", "slug": "snacks"},
+            {"name": "Grains", "slug": "grains"},
+            {"name": "Spices", "slug": "spices"},
+            {"name": "Frozen Foods", "slug": "frozen-foods"},
+        ]
+        for cat_data in categories_data:
+            Category.objects.get_or_create(
+                slug=cat_data["slug"],
+                defaults={"name": cat_data["name"]}
+            )
+        self.stdout.write(self.style.SUCCESS(f"Created {len(categories_data)} categories"))
+
         # Create demo users
         self.stdout.write("Creating demo users...")
         
