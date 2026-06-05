@@ -405,6 +405,52 @@ public class InventoryScannerActivity extends AppCompatActivity {
 
         row.addView(info);
 
+        LinearLayout buttonRow = new LinearLayout(this);
+        buttonRow.setOrientation(LinearLayout.HORIZONTAL);
+        buttonRow.setGravity(Gravity.CENTER_VERTICAL);
+
+        Button add = new Button(this);
+        add.setText("Add");
+        add.setAllCaps(false);
+        add.setTextColor(0xFFFFFFFF);
+        add.setBackgroundColor(0xFF22C55E);
+        add.setOnClickListener(v -> {
+            if (line.product != null) {
+                InventoryController.showRestockDialog(this, apiClient, line.product, pendingRefresh());
+            } else {
+                ScannedLabel label = new ScannedLabel();
+                label.name = line.barcode;
+                openAddProductForm(label);
+            }
+        });
+        buttonRow.addView(add, new LinearLayout.LayoutParams(dp(70), dp(40)));
+
+        View gap = new View(this);
+        gap.setLayoutParams(new LinearLayout.LayoutParams(dp(8), 1));
+        buttonRow.addView(gap);
+
+        Button edit = new Button(this);
+        edit.setText("Edit");
+        edit.setAllCaps(false);
+        edit.setTextColor(0xFFFFFFFF);
+        edit.setBackgroundColor(0xFF3B82F6);
+        edit.setOnClickListener(v -> {
+            if (line.product != null) {
+                ScannedLabel label = new ScannedLabel();
+                label.name = line.product.name;
+                label.unit = line.product.unit;
+                label.price = line.product.price != null ? line.product.price.toPlainString() : null;
+                openAddProductForm(label);
+            } else {
+                Toast.makeText(this, "No product to edit", Toast.LENGTH_SHORT).show();
+            }
+        });
+        buttonRow.addView(edit, new LinearLayout.LayoutParams(dp(70), dp(40)));
+
+        View gap2 = new View(this);
+        gap2.setLayoutParams(new LinearLayout.LayoutParams(dp(8), 1));
+        buttonRow.addView(gap2);
+
         Button restock = new Button(this);
         restock.setText("Restock");
         restock.setAllCaps(false);
@@ -417,7 +463,9 @@ public class InventoryScannerActivity extends AppCompatActivity {
                 InventoryController.showScannerDialog(this, apiClient, catalog, pendingRefresh());
             }
         });
-        row.addView(restock, new LinearLayout.LayoutParams(dp(100), dp(44)));
+        buttonRow.addView(restock, new LinearLayout.LayoutParams(dp(70), dp(40)));
+
+        row.addView(buttonRow);
 
         card.addView(row);
         return card;

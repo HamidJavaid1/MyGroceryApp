@@ -109,13 +109,6 @@ public class ShopkeeperScreenRenderer {
         meta.setTextSize(14);
         meta.setPadding(0, 6, 0, 10);
         box.addView(meta);
-        if (apiClient != null) {
-            Button restock = new Button(ctx);
-            restock.setText("Restock");
-            restock.setAllCaps(false);
-            restock.setOnClickListener(v -> InventoryController.showRestockDialog(ctx, apiClient, product, refreshListener()));
-            box.addView(restock);
-        }
         card.addView(box);
         return card;
     }
@@ -124,6 +117,8 @@ public class ShopkeeperScreenRenderer {
         LinearLayout col = new LinearLayout(ctx);
         col.setOrientation(LinearLayout.VERTICAL);
 
+        LinearLayout row = new LinearLayout(ctx);
+        row.setOrientation(LinearLayout.HORIZONTAL);
         Button addProduct = new Button(ctx);
         addProduct.setText("Add product");
         addProduct.setAllCaps(false);
@@ -132,34 +127,16 @@ public class ShopkeeperScreenRenderer {
                 Toast.makeText(ctx, "API not ready", Toast.LENGTH_SHORT).show();
                 return;
             }
-            ProductInventoryHelper.showAddProductForm(
+            ProductInventoryHelper.launchInventoryScanner(
                     (AppCompatActivity) ctx,
                     apiClient,
                     "shopkeeper",
                     null,
                     null,
-                    () -> {
-                        if (inventoryRefresh != null) {
-                            inventoryRefresh.run();
-                        }
-                    }
+                    refreshListener()
             );
         });
-        col.addView(addProduct, new LinearLayout.LayoutParams(-1, -2));
-        col.addView(ShopkeeperUiUtils.spacer(ctx, 10));
-
-        LinearLayout row = new LinearLayout(ctx);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        Button scanner = new Button(ctx);
-        scanner.setText("Scanner");
-        scanner.setAllCaps(false);
-        scanner.setOnClickListener(v -> openScanner(products));
-        Button quick = new Button(ctx);
-        quick.setText("Quick restock");
-        quick.setAllCaps(false);
-        quick.setOnClickListener(v -> InventoryController.showScannerDialog(ctx, apiClient, products, refreshListener()));
-        row.addView(scanner, new LinearLayout.LayoutParams(0, -2, 1f));
-        row.addView(quick, new LinearLayout.LayoutParams(0, -2, 1f));
+        row.addView(addProduct, new LinearLayout.LayoutParams(0, -2, 1f));
         col.addView(row);
         return col;
     }

@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-30:12
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-30:12
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-30:12
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-30:12
-MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-35:12
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-35:12
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-35:12
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:1-35:12
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-14:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\hamid\.gradle\caches\8.9\transforms\81335119a568adab27dfc9fa2e61a412\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\hamid\.gradle\caches\8.9\transforms\1f4b0b37224efbd58530b1b6cc85a0df\transformed\constraintlayout-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.airbnb.android:lottie:6.6.2] C:\Users\hamid\.gradle\caches\8.9\transforms\f8525c60a54c83aac191b6728b097b24\transformed\jetified-lottie-6.6.2\AndroidManifest.xml:2:1-9:12
@@ -127,6 +127,8 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\hamid\.gradle\c
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
 ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:2:5-67
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-67
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-67
 MERGED from [com.google.firebase:firebase-auth:24.1.0] C:\Users\hamid\.gradle\caches\8.9\transforms\a7d7e876ad23c5b459bdf04ddca1497f\transformed\jetified-firebase-auth-24.1.0\AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-auth:24.1.0] C:\Users\hamid\.gradle\caches\8.9\transforms\a7d7e876ad23c5b459bdf04ddca1497f\transformed\jetified-firebase-auth-24.1.0\AndroidManifest.xml:25:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:23.2.0] C:\Users\hamid\.gradle\caches\8.9\transforms\8b0f89ebbd0a21c9c101ac361cab9886\transformed\jetified-play-services-measurement-api-23.2.0\AndroidManifest.xml:22:5-67
@@ -159,17 +161,21 @@ ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\And
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:4:22-78
 uses-permission#android.permission.CAMERA
 ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:5:5-65
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-65
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-65
 	android:name
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:5:22-62
 uses-feature#android.hardware.camera
 ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:7:5-85
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-12:36
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-12:36
 	android:required
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:7:58-82
 	android:name
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:7:19-57
 application
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:9:5-29:19
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:9:5-29:19
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:9:5-34:19
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:9:5-34:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\hamid\.gradle\caches\8.9\transforms\81335119a568adab27dfc9fa2e61a412\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\hamid\.gradle\caches\8.9\transforms\81335119a568adab27dfc9fa2e61a412\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\hamid\.gradle\caches\8.9\transforms\1f4b0b37224efbd58530b1b6cc85a0df\transformed\constraintlayout-2.2.0\AndroidManifest.xml:7:5-20
@@ -268,64 +274,86 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\hamid\.gradle\c
 		ADDED from [androidx.core:core:1.13.0] C:\Users\hamid\.gradle\caches\8.9\transforms\32c5d5592cbced18c50b69bee66180ef\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 	android:label
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:11:9-34
+	android:roundIcon
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:13:9-54
+	android:icon
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:12:9-43
 	android:theme
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:10:9-47
 	android:networkSecurityConfig
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:12:9-69
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:14:9-69
 	android:usesCleartextTraffic
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:13:9-44
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:15:9-44
 activity#com.bazarlink.app.BoardingActivity
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:14:9-19:20
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:16:9-21:20
 	android:exported
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:14:52-75
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:16:52-75
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:14:19-51
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:16:19-51
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:15:13-18:29
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:17:13-20:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:16:17-69
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:18:17-69
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:16:25-66
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:18:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:17:17-77
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:19:17-77
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:17:27-74
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:19:27-74
 activity#com.bazarlink.app.OnboardingActivity
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:20:9-81
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:22:9-81
 	android:exported
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:20:54-78
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:22:54-78
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:20:19-53
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:22:19-53
 activity#com.bazarlink.app.LoginActivity
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:21:9-76
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:23:9-76
 	android:exported
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:21:49-73
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:23:49-73
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:21:19-48
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:23:19-48
 activity#com.bazarlink.app.SignUpActivity
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:22:9-77
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:24:9-77
 	android:exported
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:22:50-74
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:24:50-74
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:22:19-49
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:24:19-49
 activity#com.bazarlink.app.MainActivity
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:23:9-75
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:25:9-75
 	android:exported
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:23:48-72
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:25:48-72
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:23:19-47
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:25:19-47
+activity#com.bazarlink.shared.inventory.InventoryScannerActivity
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:26:9-117
+	android:exported
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:26:90-114
+	android:name
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:26:19-89
+activity#com.bazarlink.shared.inventory.BarcodeScannerActivity
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:27:9-115
+	android:exported
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:27:88-112
+	android:name
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:27:19-87
+activity#com.bazarlink.shared.inventory.LabelTextScanActivity
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:28:9-114
+	android:exported
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:28:87-111
+	android:name
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:28:19-86
 service#com.bazarlink.shared.notifications.BazarMessagingService
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:24:9-28:19
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:29:9-33:19
 	android:exported
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:24:90-114
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:29:90-114
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:24:18-89
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:29:18-89
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:25:13-27:29
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:30:13-32:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:26:17-78
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:31:17-78
 	android:name
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:26:25-75
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml:31:25-75
 uses-sdk
 INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\app\src\main\AndroidManifest.xml

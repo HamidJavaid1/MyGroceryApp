@@ -1,0 +1,4 @@
+com.bazarlink.customer.test.customer-androidTest-0 C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\build\generated\res\resValues\androidTest\debug
+com.bazarlink.customer.test.customer-mergeDebugAndroidTestResources-1 C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.bazarlink.customer.test.customer-mergeDebugAndroidTestResources-2 C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.bazarlink.customer.test.customer-debugAndroidTest-3 C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

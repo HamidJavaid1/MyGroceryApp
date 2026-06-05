@@ -1,16 +1,30 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml:2:13-83
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml:2:13-83
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:1:1-5:12
 	package
-		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml
+		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml:2:23-81
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:2:5-67
+	android:name
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:2:22-64
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:3:5-65
+	android:name
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:3:22-62
+uses-feature#android.hardware.camera
+ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:4:5-85
+	android:required
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:4:58-82
+	android:name
+		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:4:19-57
 uses-sdk
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml reason: use-sdk injection requested
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml
-INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml
+INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml
+		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14834195532457447308.xml
+		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml

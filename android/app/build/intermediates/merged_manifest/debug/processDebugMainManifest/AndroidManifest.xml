@@ -48,8 +48,10 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="false"
+        android:icon="@mipmap/ic_launcher"
         android:label="BazarLink"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.BazarLink"
         android:usesCleartextTraffic="true" >
         <activity
@@ -72,6 +74,15 @@
             android:exported="false" />
         <activity
             android:name="com.bazarlink.app.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bazarlink.shared.inventory.InventoryScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bazarlink.shared.inventory.BarcodeScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bazarlink.shared.inventory.LabelTextScanActivity"
             android:exported="false" />
 
         <service

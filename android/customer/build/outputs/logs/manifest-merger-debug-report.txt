@@ -4,7 +4,7 @@ ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\mai
 INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml:1:1-18:12
 INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml:1:1-18:12
 INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml:1:1-18:12
-MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-14:12
 MERGED from [com.google.firebase:firebase-analytics:23.2.0] C:\Users\hamid\.gradle\caches\8.9\transforms\1bb0a881d7ec0935e25d18a44ac2e58a\transformed\jetified-firebase-analytics-23.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-auth:24.1.0] C:\Users\hamid\.gradle\caches\8.9\transforms\a7d7e876ad23c5b459bdf04ddca1497f\transformed\jetified-firebase-auth-24.1.0\AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.firebase:firebase-messaging:25.0.2] C:\Users\hamid\.gradle\caches\8.9\transforms\c53de0c8a48995a2ddcba22e7349b3b6\transformed\jetified-firebase-messaging-25.0.2\AndroidManifest.xml:17:1-66:12
@@ -127,6 +127,8 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\hamid\.gradle\c
 		ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
 ADDED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml:2:5-67
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-67
+MERGED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-67
 MERGED from [com.google.firebase:firebase-auth:24.1.0] C:\Users\hamid\.gradle\caches\8.9\transforms\a7d7e876ad23c5b459bdf04ddca1497f\transformed\jetified-firebase-auth-24.1.0\AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-auth:24.1.0] C:\Users\hamid\.gradle\caches\8.9\transforms\a7d7e876ad23c5b459bdf04ddca1497f\transformed\jetified-firebase-auth-24.1.0\AndroidManifest.xml:25:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:23.2.0] C:\Users\hamid\.gradle\caches\8.9\transforms\8b0f89ebbd0a21c9c101ac361cab9886\transformed\jetified-play-services-measurement-api-23.2.0\AndroidManifest.xml:22:5-67
@@ -524,6 +526,16 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\hamid\.gradle\c
 		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\hamid\OneDrive\Documents\GroceryApp\android\customer\src\main\AndroidManifest.xml
+uses-permission#android.permission.CAMERA
+ADDED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-65
+	android:name
+		ADDED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:22-62
+uses-feature#android.hardware.camera
+ADDED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-12:36
+	android:required
+		ADDED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:9-33
+	android:name
+		ADDED from [:shared] C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:9-47
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:24.1.0] C:\Users\hamid\.gradle\caches\8.9\transforms\a7d7e876ad23c5b459bdf04ddca1497f\transformed\jetified-firebase-auth-24.1.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-messaging:25.0.2] C:\Users\hamid\.gradle\caches\8.9\transforms\c53de0c8a48995a2ddcba22e7349b3b6\transformed\jetified-firebase-messaging-25.0.2\AndroidManifest.xml:22:5-79

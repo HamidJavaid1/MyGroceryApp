@@ -4,4 +4,18 @@
 4
 5    <uses-sdk android:minSdkVersion="26" />
 6
-7</manifest>
+7    <uses-permission android:name="android.permission.INTERNET" />
+7-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:2:5-67
+7-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:2:22-64
+8    <uses-permission android:name="android.permission.CAMERA" />
+8-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:3:5-65
+8-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:3:22-62
+9
+10    <uses-feature
+10-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:4:5-85
+11        android:name="android.hardware.camera"
+11-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:4:19-57
+12        android:required="false" />
+12-->C:\Users\hamid\OneDrive\Documents\GroceryApp\android\shared\src\main\AndroidManifest.xml:4:58-82
+13
+14</manifest>
