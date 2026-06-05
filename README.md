@@ -3,6 +3,11 @@
 
 # BazarLink — Grocery Marketplace App
 
+# App Icon 
+
+<img width="1254" height="1254" alt="ChatGPT Image Jun 5, 2026, 03_37_28 PM" src="https://github.com/user-attachments/assets/09749ae3-0671-49e7-b1d0-f43cc877968f" />
+
+
 > **Version:** 1.0.0 | **Platform:** Android | **Category:** Shopping / Grocery
 
 BazarLink is a full-featured grocery marketplace that connects **customers**, **shopkeepers**, and **wholesalers** in one unified platform. Customers browse and order from nearby shops, shopkeepers manage their inventory and fulfill orders, and wholesalers post bulk supply offers with quotation-based pricing — all in real time.
